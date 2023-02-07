@@ -1,7 +1,13 @@
-# Keycloak Config as Code Demo
-Author: Maik Kingma
+# Keycloak - Config as Code Demo
+**Author:** Maik Kingma
+- Blog - [the/experts.](https://blog.the-experts.nl/maikkingma)
+- LinkedIn - [Maik Kingma](https://www.linkedin.com/in/maik-kingma)
+- Twitter - [@MaikKingma](https://www.twitter.com/maikkingma)
 
-TODO write an introduction note
+In case that you are in need of some general information on Keycloak and how different building blocks are used within
+it, feel free to read my [introductory blog article](https://blog.the-experts.nl/maikkingma/identity-and-access-management-iam-with-keycloak-53g1)
+on _Identity and Access Management (IAM) with Keycloak_.
+
 
 ## Table of contents
 <!-- TOC -->
@@ -15,10 +21,14 @@ TODO write an introduction note
 <!-- TOC -->
 
 ## Prerequisites
-
+* Java 17
+* Docker Desktop
+* Maven
 
 ## Creating the Maven Project
+(blog article: TODO place link here)
 
+In this section we will create the base directory structure and initialize the maven project.
 ### The directory structure
 Create your root directory with and switch the terminal location into it by running
 ```shell
@@ -193,10 +203,14 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
     </build>
 </project>
 ```
-TODO elaborate what the different sections do.
+Let's briefly analyze the different sections we have now added to our root parent POM. In preparation for our base Keycloak setup the most basic blocks are already in there. We will use those in Pt.2 of this blog series.
+- In the ``modules`` element we register our two submodules we previously created.
+- In the ``properties`` element we maintain all the (version) variables that we will use throughout our project.
+- In the ``dependencyManagement`` element, all dependencies and their versions we want to use should be added.
+- Contained in the ``build`` section you will find the ``pluginManagement`` where we define the plugins that we will use later on throughout our project.
 
 ### Updating the child pom.xml files
-
+All that remains is to update the child POMs and we are ready to go. Please replace the content of ``./keycloak/pom.xml`` with the following snippet:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -213,7 +227,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 
 </project>
 ```
-
+and accordingly, ``./java-configuration/pom.xml`` with this snippet:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 
@@ -238,6 +252,7 @@ mvn clean package
 For now, the project and its submodules are completely empty. We will now first focus on setting up a clean and basic Keycloak distribution that
 we can run within a container platform such as Docker.
 
+Stay tuned for more!
 
 
 
