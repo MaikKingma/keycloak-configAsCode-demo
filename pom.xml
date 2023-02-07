@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>nl.theexperts.keycloak</groupId>
+    <artifactId>keycloak-configascode-demo</artifactId>
+    <version>0.0.1-local</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>keycloak</module>
+        <module>java-configuration</module>
+    </modules>
+
+    <properties>
+        <!-- Java -->
+        <java.version>17</java.version>
+
+        <!-- Maven -->
+        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+        <maven.shade.plugin.version>3.3.0</maven.shade.plugin.version>
+        <maven.jar.plugin.version>3.2.2</maven.jar.plugin.version>
+
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
+        <maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ss'Z'</maven.build.timestamp.format>
+
+        <!-- Project specific -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- Keycloak -->
+        <keycloak.version>20.0.3</keycloak.version>
+        <quarkus.version>2.13.3.Final</quarkus.version>
+        <quarkus.resteasy.version>2.13.5.Final</quarkus.resteasy.version>
+        <quarkus.native.builder-image>mutable-jar</quarkus.native.builder-image>
+
+        <!-- Plugins -->
+        <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <!--Quarkus-->
+            <dependency>
+                <groupId>io.quarkus.arc</groupId>
+                <artifactId>arc</artifactId>
+                <version>${quarkus.version}</version>
+            </dependency>
+            <!--keycloak-->
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-quarkus-server</artifactId>
+                <version>${keycloak.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-quarkus-dist</artifactId>
+                <version>${keycloak.version}</version>
+                <type>zip</type>
+            </dependency>
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-admin-client</artifactId>
+                <version>${keycloak.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-core</artifactId>
+                <version>${keycloak.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.keycloak</groupId>
+                <artifactId>keycloak-services</artifactId>
+                <version>${keycloak.version}</version>
+            </dependency>
+
+            <!--REST-->
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-resteasy-jackson</artifactId>
+                <version>${quarkus.resteasy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-rest-client</artifactId>
+                <version>${quarkus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-rest-client-jackson</artifactId>
+                <version>${quarkus.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                    <configuration>
+                        <excludes>
+                            <exclude>**/*IntegrationTest.java</exclude>
+                        </excludes>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>unpack-keycloak-server-distribution</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>unpack</goal>
+                            </goals>
+                            <configuration>
+                                <artifactItems>
+                                    <artifactItem>
+                                        <groupId>org.keycloak</groupId>
+                                        <artifactId>keycloak-quarkus-dist</artifactId>
+                                        <type>zip</type>
+                                        <outputDirectory>target</outputDirectory>
+                                    </artifactItem>
+                                </artifactItems>
+                                <excludes>**/lib/**</excludes>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>io.quarkus</groupId>
+                    <artifactId>quarkus-maven-plugin</artifactId>
+                    <version>${quarkus.version}</version>
+                    <configuration>
+                        <finalName>keycloak</finalName>
+                        <buildDir>${project.build.directory}/keycloak-${keycloak.version}</buildDir>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>build</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
