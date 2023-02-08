@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>nl.theexperts.keycloak</groupId>
+    <groupId>nl.the_experts.keycloak</groupId>
     <artifactId>keycloak-configascode-demo</artifactId>
     <version>0.0.1-local</version>
   </parent>

@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>nl.theexperts.keycloak</groupId>
+    <groupId>nl.the_experts.keycloak</groupId>
     <artifactId>keycloak-configascode-demo</artifactId>
     <version>0.0.1-local</version>
     <packaging>pom</packaging>
