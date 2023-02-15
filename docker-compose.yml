@@ -1,0 +1,46 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:14.4
+    container_name: postgres
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    ports:
+      - '5432:5432'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  keycloak:
+    build: .
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      - KC_LOG_LEVEL=info
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_HOSTNAME_STRICT_HTTPS=false
+      - KC_DB=postgres
+      - KC_DB_SCHEMA=public
+      - KC_DB_URL_PORT=5432
+      - KC_DB_URL_HOST=postgres
+      - KC_DB_USERNAME=postgres
+      - KC_DB_PASSWORD=postgres
+      - KC_HEALTH_ENABLED=true
+      - KC_METRICS_ENABLED=false
+    container_name: keycloak
+    entrypoint: /opt/keycloak/bin/kc.sh start-dev --auto-build --http-enabled=true --cache=local
+    ports:
+      - "8080:8080"
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -q -O /dev/null http://keycloak:8080/" ]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+      start_period: 10s
