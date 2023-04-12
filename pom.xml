@@ -39,6 +39,9 @@
 
         <!-- Plugins -->
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
+
+        <!-- Tooling -->
+        <lombok.version>1.18.26</lombok.version>
     </properties>
 
 
@@ -93,6 +96,13 @@
                 <groupId>io.quarkus</groupId>
                 <artifactId>quarkus-rest-client-jackson</artifactId>
                 <version>${quarkus.version}</version>
+            </dependency>
+
+            <!--Tooling-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

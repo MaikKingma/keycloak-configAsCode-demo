@@ -17,7 +17,7 @@ RUN microdnf update -y && \
     microdnf install -y java-17-openjdk-headless && \
     microdnf clean all && rm -rf /var/cache/yum/* && \
     echo "keycloak:x:0:root" >> /etc/group && \
-    echo "keycloak:x:10001:0:keycloak user:/opt/keycloak:/sbin/nologin" >> /etc/passwd && \
+    echo "keycloak:x:1000:0:keycloak user:/opt/keycloak:/sbin/nologin" >> /etc/passwd && \
     ln -sf /usr/share/zoneinfo/Europe/Amsterdam /etc/localtime # set timezone
 
 COPY --from=builder --chown=1000:0 /opt/keycloak /opt/keycloak
