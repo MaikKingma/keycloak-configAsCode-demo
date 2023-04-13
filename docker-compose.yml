@@ -44,3 +44,17 @@ services:
       timeout: 10s
       retries: 10
       start_period: 10s
+
+  keycloak-java-configuration:
+    image: harbor-voorportaal.dictu.intern/docker-hub/library/openjdk:17
+    volumes:
+      - ./java-configuration/target/java-configuration.jar:/jars/java-configuration.jar
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KEYCLOAK_CONFIG_SERVER_URI=http://localhost:8080
+    working_dir: /jars
+    command: java -Dkeycloak.server=${KEYCLOAK_CONFIG_SERVER_URI} -Dkeycloak.realm=master -Dkeycloak.user=${KEYCLOAK_ADMIN} -Dkeycloak.password=${KEYCLOAK_ADMIN_PASSWORD} -jar java-configuration.jar
+    depends_on:
+      keycloak1:
+        condition: service_healthy
