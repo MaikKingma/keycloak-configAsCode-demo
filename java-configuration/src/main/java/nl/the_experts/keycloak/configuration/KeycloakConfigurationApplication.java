@@ -3,8 +3,6 @@ package nl.the_experts.keycloak.configuration;
 import org.jboss.logging.Logger;
 import org.keycloak.admin.client.Keycloak;
 
-import java.util.Arrays;
-
 /**
  * Application to configure Keycloak.
  * The configuration properties to connect to Keycloak must be passed as Java system properties or

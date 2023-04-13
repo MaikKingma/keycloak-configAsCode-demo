@@ -2,7 +2,6 @@ package nl.the_experts.keycloak.configuration.example;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.jbosslog.JBossLog;
-import nl.the_experts.keycloak.configuration.KeycloakConfigurationProperties;
 import org.keycloak.admin.client.Keycloak;
 
 /**
