@@ -30,5 +30,6 @@ class ExampleConfigurationTest {
         // then
         RealmConfiguration mockRealm = realmConfigConstructorMock.constructed().get(0);
         verify(mockRealm, times(1)).configure(ExampleConfiguration.REALM_NAME, ExampleConfiguration.REALM_DISPLAY_NAME);
+        realmConfigConstructorMock.close();
     }
 }
