@@ -11,6 +11,7 @@ import org.keycloak.admin.client.Keycloak;
 @AllArgsConstructor
 public class ExampleConfiguration {
     static final String REALM_NAME = "example";
+    static final String REALM_DISPLAY_NAME = "example display name";
 
     private final Keycloak keycloak;
 
@@ -22,7 +23,7 @@ public class ExampleConfiguration {
         log.infof("Starting configuration of realm '%s'.", REALM_NAME);
         log.info("-----------------------------------------------");
 
-        new RealmConfiguration(keycloak.realms(), REALM_NAME).configure();
+        new RealmConfiguration(keycloak.realms()).configure(REALM_NAME, REALM_DISPLAY_NAME);
 
         log.info("-----------------------------------------------");
         log.infof("Finished configuration of realm '%s'.%n", REALM_NAME);
