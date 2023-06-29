@@ -21,7 +21,6 @@
         <!-- Maven -->
         <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
         <maven.shade.plugin.version>3.4.1</maven.shade.plugin.version>
-        <mmaven-resources-plugin.version>3.3.1</mmaven-resources-plugin.version>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
         <maven.jar.plugin.version>3.3.0</maven.jar.plugin.version>
 
@@ -35,8 +34,8 @@
 
         <!-- Keycloak -->
         <keycloak.version>20.0.5</keycloak.version>
-        <quarkus.version>2.16.7.Final</quarkus.version>
-        <quarkus.resteasy.version>2.16.7.Final</quarkus.resteasy.version>
+        <quarkus.version>2.13.3.Final</quarkus.version>
+        <quarkus.resteasy.version>2.13.5.Final</quarkus.resteasy.version>
         <quarkus.native.builder-image>mutable-jar</quarkus.native.builder-image>
 
         <!-- Plugins -->
@@ -174,7 +173,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
-                    <version>${maven-resources-plugin.version}</version>
+                    <version>3.3.1</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
