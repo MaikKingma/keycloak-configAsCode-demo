@@ -19,10 +19,10 @@
         <java.version>17</java.version>
 
         <!-- Maven -->
-        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>3.0.0-M5</maven-failsafe-plugin.version>
-        <maven.shade.plugin.version>3.3.0</maven.shade.plugin.version>
-        <maven.jar.plugin.version>3.2.2</maven.jar.plugin.version>
+        <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
+        <maven.shade.plugin.version>3.4.1</maven.shade.plugin.version>
+        <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+        <maven.jar.plugin.version>3.3.0</maven.jar.plugin.version>
 
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -45,12 +45,10 @@
         <lombok.version>1.18.26</lombok.version>
 
         <!-- Testing -->
-        <junit.jupiter.version>5.8.2</junit.jupiter.version>
+        <junit.jupiter.version>5.9.2</junit.jupiter.version>
         <assertj-core.version>3.23.1</assertj-core.version>
-        <testcontainers-keycloak.version>2.4.0</testcontainers-keycloak.version>
-        <mockito.version>5.3.0</mockito.version>
-        <mockito-inline.version>5.2.0</mockito-inline.version>
-        <junit.pioneer.version>1.9.1</junit.pioneer.version>
+        <mockito.version>5.3.1</mockito.version>
+        <junit.pioneer.version>2.0.1</junit.pioneer.version>
     </properties>
 
     <dependencyManagement>
@@ -61,6 +59,7 @@
                 <artifactId>arc</artifactId>
                 <version>${quarkus.version}</version>
             </dependency>
+
             <!--keycloak-->
             <dependency>
                 <groupId>org.keycloak</groupId>
@@ -139,23 +138,11 @@
                 <scope>test</scope>
             </dependency>
             <dependency>
-                <groupId>com.github.dasniko</groupId>
-                <artifactId>testcontainers-keycloak</artifactId>
-                <version>${testcontainers-keycloak.version}</version>
-                <scope>test</scope>
-            </dependency>
-            <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-core</artifactId>
-                <version>5.3.1</version>
+                <version>${mockito.version}</version>
                 <scope>test</scope>
             </dependency>
-<!--            <dependency>-->
-<!--                <groupId>org.mockito</groupId>-->
-<!--                <artifactId>mockito-inline</artifactId>-->
-<!--                <version>${mockito-inline.version}</version>-->
-<!--                <scope>test</scope>-->
-<!--            </dependency>-->
             <dependency>
                 <groupId>org.mockito</groupId>
                 <artifactId>mockito-junit-jupiter</artifactId>
@@ -174,6 +161,20 @@
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${java.version}</source>
+                        <target>${java.version}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.3.1</version>
+                </plugin>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>${maven-surefire-plugin.version}</version>
@@ -201,12 +202,9 @@
                     </configuration>
                 </plugin>
                 <plugin>
-                    <artifactId>maven-failsafe-plugin</artifactId>
-                    <version>${maven-failsafe-plugin.version}</version>
-                </plugin>
-                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
+                    <version>3.6.0</version>
                     <executions>
                         <execution>
                             <id>unpack-keycloak-server-distribution</id>

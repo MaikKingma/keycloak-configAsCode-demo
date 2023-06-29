@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   postgres:
-    image: postgres:14.4
+    image: postgres:15.2
     container_name: postgres
     environment:
       POSTGRES_DB: keycloak
@@ -39,10 +39,10 @@ services:
     ports:
       - "8080:8080"
     healthcheck:
-      test: [ "CMD-SHELL", "wget -q -O /dev/null http://keycloak:8080/" ]
+      test: [ "CMD-SHELL", "curl -f http://keycloak:8080/ || exit 1" ]
       interval: 10s
       timeout: 10s
-      retries: 10
+      retries: 6
       start_period: 10s
 
   keycloak-java-configuration:
@@ -52,10 +52,14 @@ services:
     environment:
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
-      - KEYCLOAK_CONFIG_SERVER_URI=http://localhost:8080
+      - KEYCLOAK_CONFIG_SERVER_URI=http://keycloak:8080
       - KEYCLOAK_CONFIG_REALM=master
     working_dir: /jars
-    command: java -Dkeycloak.server=${KEYCLOAK_CONFIG_SERVER_URI} -Dkeycloak.realm=${KEYCLOAK_CONFIG_REALM} -Dkeycloak.user=${KEYCLOAK_ADMIN} -Dkeycloak.password=${KEYCLOAK_ADMIN_PASSWORD} -jar java-configuration.jar
+#    command: java -Dkeycloak.server=${KEYCLOAK_CONFIG_SERVER_URI} -Dkeycloak.realm=${KEYCLOAK_CONFIG_REALM} -Dkeycloak.user=${KEYCLOAK_ADMIN} -Dkeycloak.password=${KEYCLOAK_ADMIN_PASSWORD} -jar java-configuration.jar
+#    Uncomment if you want to enable debug mode, in IntelliJ Run Configurations add a Remote JVM Debug execution on port 5005
+    command: /bin/bash -c "java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005 -Dkeycloak.server=$${KEYCLOAK_CONFIG_SERVER_URI} -Dkeycloak.realm=master -Dkeycloak.user=$${KEYCLOAK_ADMIN} -Dkeycloak.password=$${KEYCLOAK_ADMIN_PASSWORD} -jar java-configuration.jar"
+    ports:
+      - "5005:5005"
     depends_on:
-      keycloak1:
+      keycloak:
         condition: service_healthy

@@ -24,7 +24,6 @@ COPY --from=builder --chown=1000:0 /opt/keycloak /opt/keycloak
 RUN mkdir -p /opt/keycloak-config && chown 1000:0 /opt/keycloak-config
 COPY --chown=1000:0 java-configuration/target/java-configuration.jar /opt/keycloak-config
 COPY --chown=1000:0 java-configuration/target/classes/scripts/start-configuration.sh /opt/keycloak-config
-RUN chmod 500 /opt/keycloak-config/start-configuration.sh
 
 
 USER 1000
@@ -33,4 +32,4 @@ WORKDIR /opt/keycloak-config
 EXPOSE 8080
 EXPOSE 8443
 
-ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start"]
+ENTRYPOINT ["/opt/keycloak/bin/kc.sh", "start-dev"]
