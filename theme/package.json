@@ -1,5 +1,5 @@
 {
-    "name": "keycloakify-theme-the-experts",
+    "name": "keycloakify-the-experts",
     "homepage": "https://starter.keycloakify.dev",
     "version": "1.0.0",
     "description": "A demo theme in the style of the/experts made with keycloakify",
@@ -15,12 +15,11 @@
         "storybook": "start-storybook -p 6006"
     },
     "keycloakify": {
+        "groupId": "nl.the_experts.keycloak",
         "extraThemeProperties": [
             "foo=bar"
         ],
-        "extraThemeNames": [
-            "the-experts"
-        ]
+        "themeName": "the-experts"
     },
     "author": "Jan Philipp Kohrs",
     "license": "MIT",
