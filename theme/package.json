@@ -1,8 +1,8 @@
 {
-    "name": "keycloakify-demo",
+    "name": "keycloakify-theme-the-experts",
     "homepage": "https://starter.keycloakify.dev",
-    "version": "4.6.1",
-    "description": "A demo project for keycloakify",
+    "version": "1.0.0",
+    "description": "A demo theme in the style of the/experts made with keycloakify",
     "repository": {
         "type": "git",
         "url": "git://github.com/codegouvfr/keycloakify-starter.git"
@@ -19,7 +19,7 @@
             "foo=bar"
         ],
         "extraThemeNames": [
-            "keycloakify-demo"
+            "the-experts"
         ]
     },
     "author": "Jan Philipp Kohrs",
@@ -27,13 +27,9 @@
     "keywords": [],
     "dependencies": {
         "evt": "^2.4.15",
-        "jwt-decode": "^3.1.2",
-        "keycloak-js": "^21.0.1",
         "keycloakify": "^7.14.1",
-        "powerhooks": "^0.26.8",
         "react": "18.1.0",
-        "react-dom": "18.1.0",
-        "tsafe": "^1.6.0"
+        "react-dom": "18.1.0"
     },
     "devDependencies": {
         "@types/node": "^15.3.1",
