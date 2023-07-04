@@ -1,86 +1,86 @@
 {
-    "name": "keycloakify-the-experts",
-    "homepage": "https://starter.keycloakify.dev",
-    "version": "1.0.0",
-    "description": "A demo theme in the style of the/experts made with keycloakify",
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/codegouvfr/keycloakify-starter.git"
+  "name": "keycloakify-the-experts",
+  "homepage": "https://starter.keycloakify.dev",
+  "version": "1.0.0",
+  "description": "A demo theme in the style of the/experts made with keycloakify",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/codegouvfr/keycloakify-starter.git"
+  },
+  "scripts": {
+    "postinstall": "copy-keycloak-resources-to-public",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "build-keycloak-theme": "yarn build && keycloakify",
+    "storybook": "storybook dev -p 6006"
+  },
+  "keycloakify": {
+    "groupId": "nl.the_experts.keycloak",
+    "extraThemeProperties": [
+      "foo=bar"
+    ],
+    "themeName": "the-experts"
+  },
+  "author": "Jan Philipp Kohrs",
+  "license": "MIT",
+  "keywords": [],
+  "dependencies": {
+    "evt": "^2.4.15",
+    "keycloakify": "^7.14.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^7.0.25",
+    "@storybook/addon-essentials": "^7.0.25",
+    "@storybook/addon-interactions": "^7.0.25",
+    "@storybook/addon-links": "^7.0.25",
+    "@storybook/node-logger": "^7.0.25",
+    "@storybook/preset-create-react-app": "^7.0.25",
+    "@storybook/react": "^7.0.25",
+    "@storybook/react-webpack5": "^7.0.25",
+    "@storybook/testing-library": "^0.2.0",
+    "@types/node": "^20.3.3",
+    "@types/react": "18.2.14",
+    "@types/react-dom": "18.2.6",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.24",
+    "react-scripts": "5.0.1",
+    "storybook": "^7.0.25",
+    "tailwind": "^4.0.0",
+    "typescript": "~4.7.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "rules": {
+      "react-hooks/exhaustive-deps": "off",
+      "@typescript-eslint/no-redeclare": "off",
+      "no-labels": "off"
     },
-    "scripts": {
-        "postinstall": "copy-keycloak-resources-to-public",
-        "start": "react-scripts start",
-        "build": "react-scripts build",
-        "build-keycloak-theme": "yarn build && keycloakify",
-        "storybook": "start-storybook -p 6006"
-    },
-    "keycloakify": {
-        "groupId": "nl.the_experts.keycloak",
-        "extraThemeProperties": [
-            "foo=bar"
-        ],
-        "themeName": "the-experts"
-    },
-    "author": "Jan Philipp Kohrs",
-    "license": "MIT",
-    "keywords": [],
-    "dependencies": {
-        "evt": "^2.4.15",
-        "keycloakify": "^7.14.1",
-        "react": "18.1.0",
-        "react-dom": "18.1.0"
-    },
-    "devDependencies": {
-        "@storybook/addon-actions": "^6.5.16",
-        "@storybook/addon-essentials": "^6.5.16",
-        "@storybook/addon-interactions": "^6.5.16",
-        "@storybook/addon-links": "^6.5.16",
-        "@storybook/builder-webpack5": "^6.5.16",
-        "@storybook/manager-webpack5": "^6.5.16",
-        "@storybook/node-logger": "^6.5.16",
-        "@storybook/preset-create-react-app": "^4.1.2",
-        "@storybook/react": "^6.5.16",
-        "@storybook/testing-library": "^0.0.13",
-        "@types/node": "^15.3.1",
-        "@types/react": "18.0.9",
-        "@types/react-dom": "18.0.4",
-        "autoprefixer": "^10.4.14",
-        "postcss": "^8.4.24",
-        "react-scripts": "5.0.1",
-        "tailwind": "^4.0.0",
-        "typescript": "~4.7.0"
-    },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest"
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
         ],
         "rules": {
-            "react-hooks/exhaustive-deps": "off",
-            "@typescript-eslint/no-redeclare": "off",
-            "no-labels": "off"
-        },
-        "overrides": [
-            {
-                "files": [
-                    "**/*.stories.*"
-                ],
-                "rules": {
-                    "import/no-anonymous-default-export": "off"
-                }
-            }
-        ]
-    },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
-    }
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
