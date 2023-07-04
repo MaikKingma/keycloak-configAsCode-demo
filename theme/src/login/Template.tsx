@@ -5,6 +5,7 @@ import { clsx } from "keycloakify/tools/clsx";
 import { usePrepareTemplate } from "keycloakify/lib/usePrepareTemplate";
 import { type TemplateProps } from "keycloakify/login/TemplateProps";
 import { useGetClassName } from "keycloakify/login/lib/useGetClassName";
+import LanguageSelect from "shared/components/LanguageSelect";
 import type { KcContext } from "./kcContext";
 import type { I18n } from "./i18n";
 
@@ -51,7 +52,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
     return (
         <div className={getClassName("kcLoginClass")}>
             <div id="kc-header" className={getClassName("kcHeaderClass")}>
-                <div id="kc-header-wrapper" className={getClassName("kcHeaderWrapperClass")}>
+                <div id="kc-header-wrapper" className={`${getClassName("kcHeaderWrapperClass")}`}>
                     {msg("loginTitleHtml", realm.displayNameHtml)}
                 </div>
             </div>
@@ -59,26 +60,7 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
             <div className={clsx(getClassName("kcFormCardClass"), displayWide && getClassName("kcFormCardAccountClass"))}>
                 <header className={getClassName("kcFormHeaderClass")}>
                     {realm.internationalizationEnabled && (assert(locale !== undefined), true) && locale.supported.length > 1 && (
-                        <div id="kc-locale">
-                            <div id="kc-locale-wrapper" className={getClassName("kcLocaleWrapperClass")}>
-                                <div className="kc-dropdown" id="kc-locale-dropdown">
-                                    {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                                    <a href="#" id="kc-current-locale-link">
-                                        {labelBySupportedLanguageTag[currentLanguageTag]}
-                                    </a>
-                                    <ul>
-                                        {locale.supported.map(({ languageTag }) => (
-                                            <li key={languageTag} className="kc-dropdown-item">
-                                                {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                                                <a href="#" onClick={() => changeLocale(languageTag)}>
-                                                    {labelBySupportedLanguageTag[languageTag]}
-                                                </a>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        <LanguageSelect kcContext={kcContext} i18n={i18n} />
                     )}
                     {!(auth !== undefined && auth.showUsername && !auth.showResetCredentials) ? (
                         displayRequiredFields ? (
