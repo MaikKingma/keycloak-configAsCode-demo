@@ -25,6 +25,7 @@
   "license": "MIT",
   "keywords": [],
   "dependencies": {
+    "@headlessui/react": "^1.7.15",
     "evt": "^2.4.15",
     "keycloakify": "^7.14.1",
     "react": "18.2.0",
@@ -45,6 +46,7 @@
     "@types/react-dom": "18.2.6",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.24",
+    "prettier": "2.8.8",
     "react-scripts": "5.0.1",
     "storybook": "^7.0.25",
     "tailwind": "^4.0.0",
@@ -70,6 +72,12 @@
         }
       }
     ]
+  },
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": false,
+    "singleQuote": true
   },
   "browserslist": {
     "production": [
