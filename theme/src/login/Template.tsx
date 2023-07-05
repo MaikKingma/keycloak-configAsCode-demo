@@ -71,7 +71,14 @@ export default function Template(props: TemplateProps<KcContext, I18n>) {
           {realm.internationalizationEnabled &&
             (assert(locale !== undefined), true) &&
             locale.supported.length > 1 && (
-              <LanguageSelect kcContext={kcContext} i18n={i18n} />
+              <div id="kc-locale">
+                <div
+                  id="kc-locale-wrapper"
+                  className={getClassName('kcLocaleWrapperClass')}
+                >
+                  <LanguageSelect kcContext={kcContext} i18n={i18n} />
+                </div>
+              </div>
             )}
           {!(
             auth !== undefined &&
