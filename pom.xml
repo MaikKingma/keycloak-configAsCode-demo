@@ -11,6 +11,7 @@
 
     <modules>
         <module>keycloak</module>
+        <module>theme</module>
     </modules>
 
     <properties>
