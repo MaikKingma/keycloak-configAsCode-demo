@@ -12,6 +12,7 @@
     <modules>
         <module>keycloak</module>
         <module>java-configuration</module>
+        <module>theme</module>
     </modules>
 
     <properties>

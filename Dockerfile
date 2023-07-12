@@ -5,6 +5,7 @@ RUN microdnf update -y && \
     echo "keycloak:x:1000:0:keycloak user:/opt/keycloak:/sbin/nologin" >> /etc/passwd
 
 COPY --chown=keycloak:keycloak keycloak/target/keycloak-20.0.5  /opt/keycloak
+COPY ./theme/build_keycloak/target/the-experts-keycloak-theme-1.0.0.jar  /opt/keycloak/providers
 
 USER 1000
 
