@@ -1,16 +1,18 @@
-
-.my-color {
-	color: red;
+.grid-stack {
+    grid-row: 1;
+    grid-column: 1;
 }
 
-.my-font {
-	font-family: 'Work Sans';
+.grid-stack>svg {
+    overflow: hidden;
+    vertical-align: middle;
+    margin: 0;
+    width: 100%;
 }
 
-.my-root-class {
-	background: white;
-}
-
-.my-root-class body {
-	background: url(./assets/background.svg) no-repeat center center fixed;
+@media (max-aspect-ratio: 1403 / 771) {
+    .grid-stack>svg {
+        height: 100%;
+        width: auto;
+    }
 }
