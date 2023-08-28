@@ -35,7 +35,7 @@ services:
       - KC_HEALTH_ENABLED=true
       - KC_METRICS_ENABLED=false
     container_name: keycloak
-    entrypoint: /opt/keycloak/bin/kc.sh start-dev --auto-build --http-enabled=true --cache=local
+    entrypoint: /opt/keycloak/bin/kc.sh start-dev --http-enabled=true --cache=local
     ports:
       - "8080:8080"
     healthcheck:

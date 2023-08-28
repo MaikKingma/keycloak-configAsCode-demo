@@ -33,9 +33,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Keycloak -->
-        <keycloak.version>20.0.5</keycloak.version>
+        <keycloak.version>21.0.1</keycloak.version>
         <quarkus.version>2.13.3.Final</quarkus.version>
-        <quarkus.resteasy.version>2.13.5.Final</quarkus.resteasy.version>
         <quarkus.native.builder-image>mutable-jar</quarkus.native.builder-image>
 
         <!-- Plugins -->
@@ -92,7 +91,7 @@
             <dependency>
                 <groupId>io.quarkus</groupId>
                 <artifactId>quarkus-resteasy-jackson</artifactId>
-                <version>${quarkus.resteasy.version}</version>
+                <version>${quarkus.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.quarkus</groupId>
