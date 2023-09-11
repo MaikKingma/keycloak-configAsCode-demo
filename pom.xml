@@ -33,7 +33,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Keycloak -->
-        <keycloak.version>21.0.1</keycloak.version>
+        <keycloak.version>21.1.2</keycloak.version>
         <quarkus.version>2.13.3.Final</quarkus.version>
         <quarkus.native.builder-image>mutable-jar</quarkus.native.builder-image>
 
@@ -85,6 +85,11 @@
                 <groupId>org.keycloak</groupId>
                 <artifactId>keycloak-services</artifactId>
                 <version>${keycloak.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.ow2.asm</groupId>
+                <artifactId>asm</artifactId>
+                <version>9.1</version>
             </dependency>
 
             <!--REST-->
