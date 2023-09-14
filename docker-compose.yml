@@ -22,10 +22,11 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      - KC_LOG_LEVEL=info
+      - KC_LOG_LEVEL=debug
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
       - KC_HOSTNAME_STRICT_HTTPS=false
+      - KC_HOSTNAME=localhost
       - KC_DB=postgres
       - KC_DB_SCHEMA=public
       - KC_DB_URL_PORT=5432
@@ -35,7 +36,7 @@ services:
       - KC_HEALTH_ENABLED=true
       - KC_METRICS_ENABLED=false
     container_name: keycloak
-    entrypoint: /opt/keycloak/bin/kc.sh start-dev --http-enabled=true --cache=local
+    entrypoint: /opt/keycloak/bin/kc.sh start-dev --http-enabled=true --cache=local --hostname-debug=true
     ports:
       - "8080:8080"
     healthcheck:
@@ -52,7 +53,7 @@ services:
     environment:
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
-      - KEYCLOAK_CONFIG_SERVER_URI=http://localhost:8080
+      - KEYCLOAK_CONFIG_SERVER_URI="http://localhost:8080"
       - KEYCLOAK_CONFIG_REALM=master
     working_dir: /jars
     command: java -Dkeycloak.server=${KEYCLOAK_CONFIG_SERVER_URI} -Dkeycloak.realm=${KEYCLOAK_CONFIG_REALM} -Dkeycloak.user=${KEYCLOAK_ADMIN} -Dkeycloak.password=${KEYCLOAK_ADMIN_PASSWORD} -jar java-configuration.jar
