@@ -22,7 +22,7 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      - KC_LOG_LEVEL=debug
+      - KC_LOG_LEVEL=info
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
       - KC_HOSTNAME_STRICT_HTTPS=false
@@ -36,7 +36,7 @@ services:
       - KC_HEALTH_ENABLED=true
       - KC_METRICS_ENABLED=false
     container_name: keycloak
-    entrypoint: /opt/keycloak/bin/kc.sh start-dev --http-enabled=true --cache=local --hostname-debug=true
+    entrypoint: /opt/keycloak/bin/kc.sh start-dev --http-enabled=true --cache=local
     ports:
       - "8080:8080"
     healthcheck:
