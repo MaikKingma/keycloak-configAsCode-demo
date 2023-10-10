@@ -37,22 +37,19 @@ public class KeycloakConfigurationApplication {
      */
     public static void main(String[] args) {
         try {
-            KeycloakConfigurationProperties configuration =
-                    KeycloakConfigurationProperties.fromEnv();
+            KeycloakConfigurationProperties configuration = KeycloakConfigurationProperties.fromEnv();
 
-            KeycloakClientBuilder keycloakClientBuilder =
-                    KeycloakClientBuilder.create(
-                        configuration.get("KEYCLOAK_SERVER"),
-                        configuration.get("KEYCLOAK_USER"),
-                        configuration.get("KEYCLOAK_PASSWORD"),
-                        configuration.get("KEYCLOAK_REALM"));
-            Keycloak keycloakClient = keycloakClientBuilder.getClient();
+            KeycloakClientBuilder keycloakClientBuilder = KeycloakClientBuilder.create(
+                    configuration.get("KEYCLOAK_SERVER"),
+                    configuration.get("KEYCLOAK_USER"),
+                    configuration.get("KEYCLOAK_PASSWORD"),
+                    configuration.get("KEYCLOAK_REALM"));
+            Keycloak keycloak = keycloakClientBuilder.getClient();
 
-            KeycloakConfiguration keycloakConfig = new KeycloakConfiguration(keycloakClient);
+            KeycloakConfiguration keycloakConfig = new KeycloakConfiguration(keycloak);
             keycloakConfig.configure();
         } catch (Exception all) {
-            Logger.getLogger(KeycloakConfigurationApplication.class)
-                    .error("Exception occurred.", all);
+            Logger.getLogger(KeycloakConfigurationApplication.class).error("Exception occurred.", all);
             throw all;
         }
     }
