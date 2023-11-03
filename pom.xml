@@ -107,7 +107,7 @@
             </dependency>
             <dependency>
                 <groupId>org.keycloak</groupId>
-                <artifactId>quarkus-keycloak-admin-client</artifactId>
+                <artifactId>keycloak-admin-client</artifactId>
                 <version>${keycloak.version}</version>
 <!--                <exclusions>-->
 <!--                    <exclusion>-->
