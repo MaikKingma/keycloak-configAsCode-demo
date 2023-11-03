@@ -22,7 +22,7 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      - KC_LOG_LEVEL=info
+      - KC_LOG_LEVEL=debug
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
       - KC_HOSTNAME_STRICT_HTTPS=false
@@ -34,10 +34,12 @@ services:
       - KC_DB_PASSWORD=postgres
       - KC_HEALTH_ENABLED=true
       - KC_METRICS_ENABLED=false
+      - JAVA_OPTS="-agentlib:jdwp=transport=dt_socket,address=*:8787,server=y,suspend=n"
     container_name: keycloak
     entrypoint: /opt/keycloak/bin/kc.sh start-dev --http-enabled=true --cache=local
     ports:
       - "8080:8080"
+      - "8787:8787"
     healthcheck:
       test: [ "CMD-SHELL", "curl -f http://keycloak:8080/ || exit 1" ]
       interval: 10s
@@ -45,21 +47,21 @@ services:
       retries: 6
       start_period: 10s
 
-  keycloak-java-configuration:
-    image: openjdk:17
-    volumes:
-      - ./java-configuration/target/java-configuration.jar:/jars/java-configuration.jar
-    environment:
-      - KEYCLOAK_ADMIN=admin
-      - KEYCLOAK_ADMIN_PASSWORD=admin
-      - KEYCLOAK_CONFIG_SERVER_URI=http://localhost:8080
-      - KEYCLOAK_CONFIG_REALM=master
-    working_dir: /jars
-    command: java -Dkeycloak.server=${KEYCLOAK_CONFIG_SERVER_URI} -Dkeycloak.realm=${KEYCLOAK_CONFIG_REALM} -Dkeycloak.user=${KEYCLOAK_ADMIN} -Dkeycloak.password=${KEYCLOAK_ADMIN_PASSWORD} -jar java-configuration.jar
-#    Uncomment if you want to enable debug mode, in IntelliJ Run Configurations add a Remote JVM Debug execution on port 5005
-#    command: /bin/bash -c "java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005 -Dkeycloak.server=$${KEYCLOAK_CONFIG_SERVER_URI} -Dkeycloak.realm=master -Dkeycloak.user=$${KEYCLOAK_ADMIN} -Dkeycloak.password=$${KEYCLOAK_ADMIN_PASSWORD} -jar java-configuration.jar"
-    ports:
-      - "5005:5005"
-    depends_on:
-      keycloak:
-        condition: service_healthy
+#  keycloak-java-configuration:
+#    image: openjdk:17
+#    volumes:
+#      - ./java-configuration/target/java-configuration.jar:/jars/java-configuration.jar
+#    environment:
+#      - KEYCLOAK_ADMIN=admin
+#      - KEYCLOAK_ADMIN_PASSWORD=admin
+#      - KEYCLOAK_CONFIG_SERVER_URI=http://localhost:8080
+#      - KEYCLOAK_CONFIG_REALM=master
+#    working_dir: /jars
+#    command: java -Dkeycloak.server=${KEYCLOAK_CONFIG_SERVER_URI} -Dkeycloak.realm=${KEYCLOAK_CONFIG_REALM} -Dkeycloak.user=${KEYCLOAK_ADMIN} -Dkeycloak.password=${KEYCLOAK_ADMIN_PASSWORD} -jar java-configuration.jar
+##    Uncomment if you want to enable debug mode, in IntelliJ Run Configurations add a Remote JVM Debug execution on port 5005
+##    command: /bin/bash -c "java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:5005 -Dkeycloak.server=$${KEYCLOAK_CONFIG_SERVER_URI} -Dkeycloak.realm=master -Dkeycloak.user=$${KEYCLOAK_ADMIN} -Dkeycloak.password=$${KEYCLOAK_ADMIN_PASSWORD} -jar java-configuration.jar"
+#    ports:
+#      - "5005:5005"
+#    depends_on:
+#      keycloak:
+#        condition: service_healthy

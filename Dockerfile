@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8-minimal:8.7 AS builder
+FROM registry.access.redhat.com/ubi8-minimal:8.8 AS builder
 RUN microdnf update -y && \
     microdnf install -y java-17-openjdk-headless && microdnf clean all && rm -rf /var/cache/yum/* && \
     echo "keycloak:x:0:root" >> /etc/group && \
@@ -10,7 +10,7 @@ USER 1000
 
 RUN /opt/keycloak/bin/kc.sh build --db=postgres
 
-FROM registry.access.redhat.com/ubi8-minimal:8.7
+FROM registry.access.redhat.com/ubi8-minimal:8.8
 
 RUN microdnf update -y && \
     microdnf reinstall -y tzdata && \
@@ -22,8 +22,8 @@ RUN microdnf update -y && \
 
 COPY --from=builder --chown=1000:0 /opt/keycloak /opt/keycloak
 RUN mkdir -p /opt/keycloak-config && chown 1000:0 /opt/keycloak-config
-COPY --chown=1000:0 java-configuration/target/java-configuration.jar /opt/keycloak-config
-COPY --chown=1000:0 java-configuration/target/classes/scripts/start-configuration.sh /opt/keycloak-config
+#COPY --chown=1000:0 java-configuration/target/java-configuration.jar /opt/keycloak-config
+#COPY --chown=1000:0 java-configuration/target/classes/scripts/start-configuration.sh /opt/keycloak-config
 
 
 USER 1000
