@@ -86,7 +86,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Keycloak -->
-        <keycloak.version>21.1.2</keycloak.version>
+        <keycloak.version>22.0.5</keycloak.version>
         <quarkus.version>2.13.3.Final</quarkus.version>
         <quarkus.resteasy.version>2.13.5.Final</quarkus.resteasy.version>
         <quarkus.native.builder-image>mutable-jar</quarkus.native.builder-image>
@@ -336,7 +336,7 @@ RUN microdnf update -y && \
     echo "keycloak:x:0:root" >> /etc/group && \
     echo "keycloak:x:1000:0:keycloak user:/opt/keycloak:/sbin/nologin" >> /etc/passwd
 
-COPY --chown=keycloak:keycloak keycloak/target/keycloak-21.1.2  /opt/keycloak
+COPY --chown=keycloak:keycloak keycloak/target/keycloak-22.0.5  /opt/keycloak
 
 USER 1000
 

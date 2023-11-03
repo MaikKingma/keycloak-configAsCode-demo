@@ -31,6 +31,21 @@
             <artifactId>keycloak-services</artifactId>
         </dependency>
 
+        <!--RESTeasy-->
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-rest-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-rest-client-jackson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-rest-client-jaxb</artifactId>
+        </dependency>
+
+
         <!--Tooling-->
         <dependency>
             <groupId>org.projectlombok</groupId>
