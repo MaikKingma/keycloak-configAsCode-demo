@@ -37,6 +37,7 @@
         <quarkus.native.builder-image>mutable-jar</quarkus.native.builder-image>
         <jandex.version>3.1.5</jandex.version>
         <asm.version>9.5</asm.version>
+        <resteasy.version>6.2.4.Final</resteasy.version>
 
         <!-- Plugins -->
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
@@ -97,6 +98,10 @@
                         <groupId>org.ow2.asm</groupId>
                         <artifactId>asm-util</artifactId>
                     </exclusion>
+                    <exclusion>
+                        <groupId>org.jboss.resteasy</groupId>
+                        <artifactId>resteasy-multipart-provider</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
             <dependency>
@@ -109,24 +114,17 @@
                 <groupId>org.keycloak</groupId>
                 <artifactId>keycloak-admin-client</artifactId>
                 <version>${keycloak.version}</version>
-<!--                <exclusions>-->
-<!--                    <exclusion>-->
-<!--                        <groupId>org.jboss.resteasy</groupId>-->
-<!--                        <artifactId>resteasy-jackson2-provider</artifactId>-->
-<!--                    </exclusion>-->
-<!--                    <exclusion>-->
-<!--                        <groupId>org.jboss.resteasy</groupId>-->
-<!--                        <artifactId>resteasy-client</artifactId>-->
-<!--                    </exclusion>-->
-<!--                    <exclusion>-->
-<!--                        <groupId>org.jboss.resteasy</groupId>-->
-<!--                        <artifactId>resteasy-jaxb-provider</artifactId>-->
-<!--                    </exclusion>-->
-<!--                    <exclusion>-->
-<!--                        <groupId>org.jboss.resteasy</groupId>-->
-<!--                        <artifactId>resteasy-core-spi</artifactId>-->
-<!--                    </exclusion>-->
-<!--                </exclusions>-->
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.jboss.resteasy</groupId>
+                        <artifactId>resteasy-client</artifactId>
+                    </exclusion>
+
+                    <exclusion>
+                        <groupId>org.jboss.resteasy</groupId>
+                        <artifactId>resteasy-jackson2-provider</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.keycloak</groupId>
@@ -143,19 +141,40 @@
                 <groupId>org.keycloak</groupId>
                 <artifactId>keycloak-services</artifactId>
                 <version>${keycloak.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.jboss.resteasy</groupId>
+                        <artifactId>resteasy-multipart-provider</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
 
             <!--Fix versions-->
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-core</artifactId>
-                <version>6.2.4.Final</version>
+                <version>${resteasy.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>org.jboss</groupId>
                         <artifactId>jandex</artifactId>
                     </exclusion>
                 </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-client</artifactId>
+                <version>${resteasy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-jackson2-provider</artifactId>
+                <version>${resteasy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-multipart-provider</artifactId>
+                <version>${resteasy.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.ow2.asm</groupId>
