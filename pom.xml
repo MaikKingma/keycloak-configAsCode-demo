@@ -41,26 +41,10 @@
 
         <!-- Plugins -->
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
-
-        <!-- Tooling -->
-<!--        <lombok.version>1.18.26</lombok.version>-->
-
-        <!-- Testing -->
-<!--        <junit.jupiter.version>5.9.2</junit.jupiter.version>-->
-<!--        <assertj-core.version>3.23.1</assertj-core.version>-->
-<!--        <mockito.version>5.3.1</mockito.version>-->
-<!--        <junit.pioneer.version>2.0.1</junit.pioneer.version>-->
     </properties>
 
     <dependencyManagement>
         <dependencies>
-<!--                <dependency>-->
-<!--                    <groupId>io.quarkus</groupId>-->
-<!--                    <artifactId>quarkus-bom</artifactId>-->
-<!--                    <version>${quarkus.version}</version>-->
-<!--                    <type>pom</type>-->
-<!--                    <scope>import</scope>-->
-<!--                </dependency>-->
             <!--Quarkus-->
             <dependency>
                 <groupId>io.quarkus.arc</groupId>
@@ -130,12 +114,6 @@
                 <groupId>org.keycloak</groupId>
                 <artifactId>keycloak-core</artifactId>
                 <version>${keycloak.version}</version>
-<!--                <exclusions>-->
-<!--                    <exclusion>-->
-<!--                        <groupId>com.sun.activation</groupId>-->
-<!--                        <artifactId>jakarta.activation</artifactId>-->
-<!--                    </exclusion>-->
-<!--                </exclusions>-->
             </dependency>
             <dependency>
                 <groupId>org.keycloak</groupId>
@@ -201,33 +179,6 @@
                 <artifactId>jandex</artifactId>
                 <version>${jandex.version}</version>
             </dependency>
-<!--            <dependency>-->
-<!--                <groupId>io.quarkus</groupId>-->
-<!--                <artifactId>quarkus-rest-client</artifactId>-->
-<!--                <version>${quarkus.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>io.quarkus</groupId>-->
-<!--                <artifactId>quarkus-rest-client-jackson</artifactId>-->
-<!--                <version>${quarkus.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>io.quarkus</groupId>-->
-<!--                <artifactId>quarkus-rest-client-jaxb</artifactId>-->
-<!--                <version>${quarkus.version}</version>-->
-<!--            </dependency>-->
-<!--            <dependency>-->
-<!--                <groupId>org.eclipse.angus</groupId>-->
-<!--                <artifactId>angus-activation</artifactId>-->
-<!--                <version>2.0.1</version>-->
-<!--            </dependency>-->
-
-            <!--Tooling-->
-<!--            <dependency>-->
-<!--                <groupId>org.projectlombok</groupId>-->
-<!--                <artifactId>lombok</artifactId>-->
-<!--                <version>${lombok.version}</version>-->
-<!--            </dependency>-->
         </dependencies>
     </dependencyManagement>
 
