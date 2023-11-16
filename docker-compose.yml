@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   postgres:
-    image: postgres:14.4
+    image: postgres:15.4
     container_name: postgres
     environment:
       POSTGRES_DB: keycloak
@@ -22,7 +22,7 @@ services:
       postgres:
         condition: service_healthy
     environment:
-      - KC_LOG_LEVEL=info
+      - KC_LOG_LEVEL=debug
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
       - KC_HOSTNAME_STRICT_HTTPS=false
@@ -34,10 +34,12 @@ services:
       - KC_DB_PASSWORD=postgres
       - KC_HEALTH_ENABLED=true
       - KC_METRICS_ENABLED=false
+      - JAVA_OPTS="-agentlib:jdwp=transport=dt_socket,address=*:8787,server=y,suspend=n"
     container_name: keycloak
     entrypoint: /opt/keycloak/bin/kc.sh start-dev --auto-build --http-enabled=true --cache=local
     ports:
       - "8080:8080"
+      - "8787:8787"
     healthcheck:
       test: [ "CMD-SHELL", "wget -q -O /dev/null http://keycloak:8080/" ]
       interval: 10s

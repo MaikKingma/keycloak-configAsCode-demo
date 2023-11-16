@@ -11,6 +11,7 @@ import org.keycloak.admin.client.Keycloak;
 @AllArgsConstructor
 public class ExampleConfiguration {
     static final String REALM_NAME = "example";
+    static final String REALM_DISPLAY_NAME = "example display name";
 
     private final Keycloak keycloak;
 
