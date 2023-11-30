@@ -23,7 +23,7 @@ export default function Login(
     social,
     realm,
     url,
-    usernameEditDisabled,
+    usernameHidden,
     login,
     auth,
     registrationDisabled,

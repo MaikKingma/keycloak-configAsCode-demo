@@ -24,17 +24,17 @@ export default function EmailLoginForm(props: {
   selectedCredential?: string
 }) {
   const { kcContext, i18n, loginAction, selectedCredential } = props
-  const { realm, login, usernameEditDisabled, url } = kcContext
+  const { realm, login, usernameHidden, url } = kcContext
   const label = !realm.loginWithEmailAllowed
     ? 'username'
     : realm.registrationEmailAsUsername
-    ? 'email'
-    : 'usernameOrEmail'
+      ? 'email'
+      : 'usernameOrEmail'
 
   const autoCompleteHelper: typeof label =
     label === 'usernameOrEmail' ? 'username' : label
 
-  const displayRememberMe = realm.rememberMe && !usernameEditDisabled
+  const displayRememberMe = realm.rememberMe && !usernameHidden
   const displayResetPassword = realm.resetPasswordAllowed
 
   const { msg } = i18n
@@ -92,7 +92,7 @@ export default function EmailLoginForm(props: {
                   autoComplete={label.startsWith('email') ? 'email' : 'off'}
                   required
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 px-2"
-                  {...(usernameEditDisabled
+                  {...(usernameHidden
                     ? { disabled: true }
                     : {
                         autoFocus: true,
