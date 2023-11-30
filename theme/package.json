@@ -27,11 +27,12 @@
   "dependencies": {
     "@headlessui/react": "^1.7.15",
     "evt": "^2.4.15",
-    "keycloakify": "^7.14.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "keycloakify": "^9.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@storybook/addon-actions": "^7.0.25",
     "@storybook/addon-essentials": "^7.0.25",
     "@storybook/addon-interactions": "^7.0.25",
@@ -42,11 +43,11 @@
     "@storybook/react-webpack5": "^7.0.25",
     "@storybook/testing-library": "^0.2.0",
     "@types/node": "^20.3.3",
-    "@types/react": "18.2.14",
-    "@types/react-dom": "18.2.6",
+    "@types/react": "^18.2.39",
+    "@types/react-dom": "^18.2.17",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.24",
-    "prettier": "2.8.8",
+    "prettier": "^3.1.0",
     "react-scripts": "5.0.1",
     "storybook": "^7.0.25",
     "tailwind": "^4.0.0",
