@@ -11,10 +11,10 @@
     </parent>
     <artifactId>keycloak</artifactId>
     <dependencies>
-        <dependency>
-            <groupId>io.quarkus.arc</groupId>
-            <artifactId>arc</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>io.quarkus.arc</groupId>-->
+<!--            <artifactId>arc</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <!-- Keycloak Distribution -->
             <groupId>org.keycloak</groupId>
@@ -58,6 +58,18 @@
         <dependency>
             <groupId>org.ow2.asm</groupId>
             <artifactId>asm-tree</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-vertx</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-vertx-http</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
         </dependency>
     </dependencies>
 

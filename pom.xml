@@ -16,7 +16,7 @@
 
     <properties>
         <!-- Java -->
-        <java.version>17</java.version>
+        <java.version>21</java.version>
 
         <!-- Maven -->
         <maven-surefire-plugin.version>3.2.2</maven-surefire-plugin.version>
@@ -34,8 +34,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Keycloak -->
-        <keycloak.version>22.0.5</keycloak.version>
-        <quarkus.version>3.2.7.Final</quarkus.version>
+        <keycloak.version>23.0.1</keycloak.version>
+        <quarkus.version>3.2.9.Final</quarkus.version>
         <quarkus.native.builder-image>mutable-jar</quarkus.native.builder-image>
         <jandex.version>3.1.5</jandex.version>
         <asm.version>9.5</asm.version>
@@ -45,7 +45,7 @@
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
 
         <!-- Tooling -->
-        <lombok.version>1.18.26</lombok.version>
+        <lombok.version>1.18.30</lombok.version>
 
         <!-- Testing -->
         <junit.jupiter.version>5.9.2</junit.jupiter.version>
@@ -92,6 +92,14 @@
                     <exclusion>
                         <groupId>org.ow2.asm</groupId>
                         <artifactId>asm-util</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>io.quarkus</groupId>
+                        <artifactId>quarkus-vertx</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>io.quarkus</groupId>
+                        <artifactId>quarkus-vertx-http</artifactId>
                     </exclusion>
                     <exclusion>
                         <groupId>org.jboss.resteasy</groupId>
@@ -191,6 +199,33 @@
                 <groupId>org.ow2.asm</groupId>
                 <artifactId>asm-tree</artifactId>
                 <version>${asm.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-vertx</artifactId>
+                <version>3.2.9.Final</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.vertx</groupId>
+                        <artifactId>vertx-core</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.quarkus</groupId>
+                <artifactId>quarkus-vertx-http</artifactId>
+                <version>3.2.9.Final</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.vertx</groupId>
+                        <artifactId>vertx-core</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>io.vertx</groupId>
+                <artifactId>vertx-core</artifactId>
+                <version>4.4.6</version>
             </dependency>
 
             <!--Tooling-->
