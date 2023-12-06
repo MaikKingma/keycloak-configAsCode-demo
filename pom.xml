@@ -48,10 +48,10 @@
         <lombok.version>1.18.26</lombok.version>
 
         <!-- Testing -->
-        <junit.jupiter.version>5.9.2</junit.jupiter.version>
-        <assertj-core.version>3.23.1</assertj-core.version>
-        <mockito.version>5.7.0</mockito.version>
-        <junit.pioneer.version>2.0.1</junit.pioneer.version>
+        <junit.jupiter.version>5.10.1</junit.jupiter.version>
+        <assertj-core.version>3.24.2</assertj-core.version>
+        <mockito.version>5.8.0</mockito.version>
+        <junit.pioneer.version>2.2.0</junit.pioneer.version>
     </properties>
 
     <dependencyManagement>
@@ -63,7 +63,7 @@
                 <version>${quarkus.version}</version>
             </dependency>
 
-            <!--keycloak-->
+            <!--Keycloak-->
             <dependency>
                 <groupId>org.keycloak</groupId>
                 <artifactId>keycloak-quarkus-server</artifactId>

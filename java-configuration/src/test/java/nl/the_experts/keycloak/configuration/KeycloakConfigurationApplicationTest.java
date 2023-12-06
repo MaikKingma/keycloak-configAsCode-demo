@@ -1,6 +1,5 @@
 package nl.the_experts.keycloak.configuration;
 
-
 import org.junit.jupiter.api.Test;
 
 import org.assertj.core.util.Arrays;

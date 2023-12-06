@@ -1,11 +1,11 @@
 #!/bin/bash
 echo Starting Keycloak configuration
 
-if [[ -z "$KEYCLOAK_SERVER_URI" ]]; then
-    KEYCLOAK_SERVER_URI=http://keycloak-server/auth
+if [[ -z "$KEYCLOAK_CONFIG_SERVER_URI" ]]; then
+    KEYCLOAK_CONFIG_SERVER_URI=http://keycloak:8080
 fi
-if [[ -z "$KEYCLOAK_REALM" ]]; then
-    KEYCLOAK_REALM=master
+if [[ -z "$KEYCLOAK_CONFIG_REALM" ]]; then
+    KEYCLOAK_CONFIG_REALM=master
 fi
 
 JAR=java-configuration.jar
