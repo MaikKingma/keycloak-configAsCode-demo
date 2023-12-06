@@ -24,6 +24,8 @@
         <maven.jar.plugin.version>3.3.0</maven.jar.plugin.version>
         <maven.dependency.plugin.version>3.6.0</maven.dependency.plugin.version>
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
+        <maven.resources.plugin.version>3.3.1</maven.resources.plugin.version>
+        <maven.surefire.tree.reporter>1.2.1</maven.surefire.tree.reporter>
 
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
@@ -261,7 +263,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-resources-plugin</artifactId>
-                    <version>3.3.1</version>
+                    <version>${maven.resources.plugin.version}</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
@@ -275,7 +277,7 @@
                         <dependency>
                             <groupId>me.fabriciorby</groupId>
                             <artifactId>maven-surefire-junit5-tree-reporter</artifactId>
-                            <version>1.2.1</version>
+                            <version>${maven.surefire.tree.reporter}</version>
                         </dependency>
                     </dependencies>
                     <configuration>
