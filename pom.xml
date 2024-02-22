@@ -16,7 +16,7 @@
 
     <properties>
         <!-- Java -->
-        <java.version>21</java.version>
+        <java.version>17</java.version>
 
         <!-- Maven -->
         <maven-surefire-plugin.version>3.2.2</maven-surefire-plugin.version>
@@ -37,7 +37,7 @@
 
         <!-- Keycloak -->
         <keycloak.version>23.0.6</keycloak.version>
-        <quarkus.version>3.2.7.Final</quarkus.version>
+        <quarkus.version>3.2.10.Final</quarkus.version>
         <quarkus.native.builder-image>mutable-jar</quarkus.native.builder-image>
         <jandex.version>3.1.5</jandex.version>
         <asm.version>9.5</asm.version>
@@ -70,15 +70,15 @@
                 <groupId>org.keycloak</groupId>
                 <artifactId>keycloak-quarkus-server</artifactId>
                 <version>${keycloak.version}</version>
-<!--                <exclusions>-->
+                <exclusions>
 <!--                    <exclusion>-->
 <!--                        <groupId>org.jboss.resteasy</groupId>-->
 <!--                        <artifactId>resteasy-core</artifactId>-->
 <!--                    </exclusion>-->
-<!--                    <exclusion>-->
-<!--                        <groupId>org.jboss</groupId>-->
-<!--                        <artifactId>jandex</artifactId>-->
-<!--                    </exclusion>-->
+                    <exclusion>
+                        <groupId>org.jboss</groupId>
+                        <artifactId>jandex</artifactId>
+                    </exclusion>
 <!--                    <exclusion>-->
 <!--                        <groupId>org.ow2.asm</groupId>-->
 <!--                        <artifactId>asm</artifactId>-->
@@ -99,7 +99,7 @@
 <!--                        <groupId>org.jboss.resteasy</groupId>-->
 <!--                        <artifactId>resteasy-multipart-provider</artifactId>-->
 <!--                    </exclusion>-->
-<!--                </exclusions>-->
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.keycloak</groupId>
