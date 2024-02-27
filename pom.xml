@@ -56,13 +56,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--Quarkus-->
-            <dependency>
-                <groupId>io.quarkus.arc</groupId>
-                <artifactId>arc</artifactId>
-                <version>${quarkus.version}</version>
-            </dependency>
-
             <!--keycloak-->
             <dependency>
                 <groupId>org.keycloak</groupId>
