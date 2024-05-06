@@ -36,7 +36,6 @@ services:
 #      - "8787:8787"
     healthcheck:
       test: [ "CMD-SHELL", "curl -f http://keycloak:8080/ || exit 1" ]
-#      test: [ "CMD-SHELL", "wget -q -O /dev/null http://keycloak:8080/" ]
       interval: 10s
       timeout: 10s
       retries: 10

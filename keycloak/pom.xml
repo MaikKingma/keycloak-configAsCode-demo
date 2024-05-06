@@ -10,11 +10,8 @@
         <version>0.0.1-local</version>
     </parent>
     <artifactId>keycloak</artifactId>
+
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>io.quarkus.arc</groupId>-->
-<!--            <artifactId>arc</artifactId>-->
-<!--        </dependency>-->
         <dependency>
             <!-- Keycloak Distribution -->
             <groupId>org.keycloak</groupId>
@@ -27,22 +24,21 @@
             <artifactId>keycloak-quarkus-server</artifactId>
         </dependency>
 
+    <!--Fix versions-->
+        <!--Resteasy-->
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
-            <artifactId>resteasy-jackson2-provider</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-multipart-provider</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.james</groupId>
+            <artifactId>apache-mime4j-dom</artifactId>
+        </dependency>
+        <!--asm-->
         <dependency>
             <groupId>org.ow2.asm</groupId>
             <artifactId>asm</artifactId>
@@ -59,6 +55,7 @@
             <groupId>org.ow2.asm</groupId>
             <artifactId>asm-tree</artifactId>
         </dependency>
+        <!--vertx-->
         <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-vertx</artifactId>
