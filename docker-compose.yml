@@ -10,6 +10,8 @@ services:
       POSTGRES_USER: postgres
     ports:
       - '5432:5432'
+    volumes:
+      - ./init-db:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -d $${POSTGRES_DB} -U $${POSTGRES_USER}"]
       interval: 10s
@@ -23,9 +25,15 @@ services:
         condition: service_healthy
     environment:
       - KC_LOG_LEVEL
-      - KEYCLOAK_ADMIN=admin
-      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KEYCLOAK_ADMIN
+      - KEYCLOAK_ADMIN_PASSWORD
       - KC_HOSTNAME_STRICT_HTTPS
+      - KC_DB
+      - KC_DB_SCHEMA
+      - KC_DB_URL_PORT
+      - KC_DB_URL_HOST
+      - KC_DB_USERNAME
+      - KC_DB_PASSWORD
       - KC_HEALTH_ENABLED
       - KC_METRICS_ENABLED
 #      - JAVA_OPTS="-agentlib:jdwp=transport=dt_socket,address=*:8787,server=y,suspend=n"
@@ -42,7 +50,7 @@ services:
       start_period: 10s
 
   keycloak-java-configuration:
-    image: openjdk:21
+    image: openjdk:17
     volumes:
       - ./java-configuration/target/java-configuration.jar:/jars/java-configuration.jar
     environment:

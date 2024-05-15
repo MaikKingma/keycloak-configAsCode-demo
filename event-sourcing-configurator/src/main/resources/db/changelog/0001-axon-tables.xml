@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Changeset for creating association_value_entry table -->
+    <changeSet id="1" author="Maik Kingma">
+        <createTable tableName="association_value_entry">
+            <column name="id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_association_value_entry"/>
+            </column>
+            <column name="association_key" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="association_value" type="VARCHAR(255)"/>
+            <column name="saga_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="saga_type" type="VARCHAR(255)"/>
+        </createTable>
+        <createIndex indexName="idx_association_value_entry_associations" tableName="association_value_entry">
+            <column name="saga_type"/>
+            <column name="association_key"/>
+            <column name="association_value"/>
+        </createIndex>
+        <createIndex indexName="idx_association_value_entry_sagas" tableName="association_value_entry">
+            <column name="saga_id"/>
+            <column name="saga_type"/>
+        </createIndex>
+        <createSequence sequenceName="seq_association_value_entry" startValue="1" incrementBy="50"/>
+    </changeSet>
+
+    <!-- Changeset for creating dead_letter_entry table -->
+    <changeSet id="2" author="Maik Kingma">
+        <createTable tableName="dead_letter_entry">
+            <column name="dead_letter_id" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_dead_letter_entry"/>
+            </column>
+            <column name="cause_message" type="VARCHAR(1023)"/>
+            <column name="cause_type" type="VARCHAR(255)"/>
+            <column name="diagnostics" type="BYTEA"/>
+            <column name="enqueued_at" type="TIMESTAMP WITH TIME ZONE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_touched" type="TIMESTAMP WITH TIME ZONE"/>
+            <!-- Other columns follow the similar pattern -->
+            <column name="aggregate_identifier" type="VARCHAR(255)"/>
+            <column name="event_identifier" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="message_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="meta_data" type="BIGINT"/>
+            <column name="payload" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payload_revision" type="VARCHAR(255)"/>
+            <column name="payload_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sequence_number" type="BIGINT"/>
+            <column name="time_stamp" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token" type="BYTEA"/>
+            <column name="token_type" type="VARCHAR(255)"/>
+            <column name="type" type="VARCHAR(255)"/>
+            <column name="processing_group" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="processing_started" type="TIMESTAMP WITH TIME ZONE"/>
+            <column name="sequence_identifier" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sequence_index" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addUniqueConstraint tableName="dead_letter_entry" columnNames="processing_group, sequence_identifier, sequence_index"
+                             constraintName="uq_dead_letter_entry_group"/>
+        <createIndex indexName="idx_dead_letter_entry_group_sequence" tableName="dead_letter_entry">
+            <column name="processing_group"/>
+            <column name="sequence_identifier"/>
+        </createIndex>
+        <createIndex indexName="idx_dead_letter_entry_group" tableName="dead_letter_entry">
+            <column name="processing_group"/>
+        </createIndex>
+    </changeSet>
+
+    <!-- Changeset for creating domain_event_entry table -->
+    <changeSet id="3" author="Maik Kingma">
+        <createTable tableName="domain_event_entry">
+            <column name="global_index" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_domain_event_entry"/>
+            </column>
+            <column name="event_identifier" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="uq_domain_event_entry_event"/>
+            </column>
+            <column name="meta_data" type="BIGINT"/>
+            <column name="payload" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payload_revision" type="VARCHAR(255)"/>
+            <column name="payload_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_stamp" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="aggregate_identifier" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sequence_number" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="type" type="VARCHAR(255)"/>
+        </createTable>
+        <addUniqueConstraint tableName="domain_event_entry" columnNames="aggregate_identifier, sequence_number"
+                             constraintName="uq_domain_event_entry_aggregate"/>
+        <createSequence sequenceName="domain_event_entry_seq" startValue="1" incrementBy="50"/>
+    </changeSet>
+
+    <!-- Changeset for creating saga_entry table -->
+    <changeSet id="4" author="Maik Kingma">
+        <createTable tableName="saga_entry">
+            <column name="saga_id" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_saga_entry"/>
+            </column>
+            <column name="revision" type="VARCHAR(255)"/>
+            <column name="saga_type" type="VARCHAR(255)"/>
+            <column name="serialized_saga" type="BYTEA"/>
+        </createTable>
+    </changeSet>
+
+    <!-- Changeset for creating snapshot_event_entry table -->
+    <changeSet id="5" author="Maik Kingma">
+        <createTable tableName="snapshot_event_entry">
+            <column name="aggregate_identifier" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_snapshot_event_entry"/>
+            </column>
+            <column name="sequence_number" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="type" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="event_identifier" type="VARCHAR(255)">
+                <constraints nullable="false" unique="true" uniqueConstraintName="uq_snapshot_event_entry_event"/>
+            </column>
+            <column name="meta_data" type="BIGINT"/>
+            <column name="payload" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="payload_revision" type="VARCHAR(255)"/>
+            <column name="payload_type" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time_stamp" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <!-- Changeset for creating token_entry table -->
+    <changeSet id="6" author="Maik Kingma">
+        <createTable tableName="token_entry">
+            <column name="processor_name" type="VARCHAR(255)">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_token_entry"/>
+            </column>
+            <column name="segment" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="owner" type="VARCHAR(255)"/>
+            <column name="timestamp" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="token" type="BYTEA"/>
+            <column name="token_type" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
