@@ -1,7 +1,7 @@
 package nl.the_experts.keycloak.process.realm;
 
 import lombok.extern.slf4j.Slf4j;
-import nl.the_experts.keycloak.domain.realm.RealmCreatedEvent;
+import nl.the_experts.keycloak.domain.realm.RealmEvent;
 import nl.the_experts.keycloak.domain_interaction.realm.RealmUseCase;
 import org.axonframework.eventhandling.EventHandler;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ public class RealmEventHandler {
 
     @EventHandler
     @Transactional
-    public void handleRealmCreatedEvent(RealmCreatedEvent event) {
+    public void handleRealmCreatedEvent(RealmEvent.RealmCreatedEvent event) {
         log.info("Handling RealmCreatedEvent: {}", event);
         realmUseCase.createRealmProjection(event.getId(), event.getDisplayName());
     }

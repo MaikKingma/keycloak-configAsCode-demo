@@ -1,8 +1,7 @@
 package nl.the_experts.keycloak.domain_interaction.realm;
 
-import nl.the_experts.keycloak.domain.realm.CreateRealmCommand;
+import nl.the_experts.keycloak.domain.realm.RealmCommand;
 import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.axonframework.eventsourcing.eventstore.jpa.DomainEventEntry;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,7 +18,7 @@ public class RealmUseCase {
 
     public void createRealm(String name, String displayName) {
         realmService.createRealmInKeycloak(name, displayName);
-        commandGateway.send(new CreateRealmCommand(name, displayName));
+        commandGateway.send(new RealmCommand.CreateRealmCommand(name, displayName));
     }
 
     public void createRealmProjection(String id, String displayName) {

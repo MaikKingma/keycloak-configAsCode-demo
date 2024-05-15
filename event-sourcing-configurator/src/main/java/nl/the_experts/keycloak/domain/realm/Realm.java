@@ -3,9 +3,9 @@ package nl.the_experts.keycloak.domain.realm;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import nl.the_experts.keycloak.domain.client.AddClientCommand;
 import nl.the_experts.keycloak.domain.client.Client;
-import nl.the_experts.keycloak.domain.client.ClientAddedEvent;
+import nl.the_experts.keycloak.domain.client.ClientCommand;
+import nl.the_experts.keycloak.domain.client.ClientEvent;
 import nl.the_experts.keycloak.domain.client.ClientId;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
@@ -34,23 +34,23 @@ public class Realm implements Serializable {
     private final List<Client> clients = new ArrayList<>();
 
     @CommandHandler
-    public Realm(CreateRealmCommand command) {
+    public Realm(RealmCommand.CreateRealmCommand command) {
         AggregateLifecycle.apply(command.convertToEvent());
     }
 
     @CommandHandler
-    public void handleAddClientCommand(AddClientCommand command) {
+    public void handleAddClientCommand(ClientCommand.AddClientCommand command) {
         AggregateLifecycle.apply(command.convertToEvent());
     }
 
     @EventSourcingHandler
-    private void onRealmCreatedEvent(RealmCreatedEvent event) {
+    private void onRealmCreatedEvent(RealmEvent.RealmCreatedEvent event) {
         name = event.getRealmName();
         displayName = event.getDisplayName();
     }
 
     @EventSourcingHandler
-    public void onClientAddedEvent(ClientAddedEvent event) {
+    public void onClientAddedEvent(ClientEvent.ClientAddedEvent event) {
         clients.add(new Client(new ClientId(event.getRealmName(), event.getClientId())));
     }
 }

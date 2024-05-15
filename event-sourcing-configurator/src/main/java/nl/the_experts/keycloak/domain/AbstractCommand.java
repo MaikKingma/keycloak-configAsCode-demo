@@ -3,6 +3,7 @@ package nl.the_experts.keycloak.domain;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import nl.the_experts.keycloak.domain.realm.RealmEvent;
 import org.axonframework.modelling.command.TargetAggregateIdentifier;
 
 @Getter

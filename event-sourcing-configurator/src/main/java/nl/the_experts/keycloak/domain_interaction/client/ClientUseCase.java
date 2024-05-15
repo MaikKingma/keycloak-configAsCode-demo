@@ -1,6 +1,6 @@
 package nl.the_experts.keycloak.domain_interaction.client;
 
-import nl.the_experts.keycloak.domain.client.AddClientCommand;
+import nl.the_experts.keycloak.domain.client.ClientCommand;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ public class ClientUseCase {
 
     public void addClientToRealm(String realmName, String clientId) {
         clientService.createRealmClient(realmName, clientId);
-        commandGateway.send(new AddClientCommand(realmName, clientId));
+        commandGateway.send(new ClientCommand.AddClientCommand(realmName, clientId));
     }
 
     public void addClientProjectionForRealm(String realmName, String clientId) {
