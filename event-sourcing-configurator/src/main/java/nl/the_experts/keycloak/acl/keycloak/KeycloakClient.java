@@ -1,5 +1,6 @@
-package nl.the_experts.keycloak.acl;
+package nl.the_experts.keycloak.acl.keycloak;
 
+import nl.the_experts.keycloak.acl.keycloak.KeycloakClientBuilder;
 import org.keycloak.admin.client.Keycloak;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

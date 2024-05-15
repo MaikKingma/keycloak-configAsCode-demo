@@ -1,4 +1,4 @@
-package nl.the_experts.keycloak.acl;
+package nl.the_experts.keycloak.acl.keycloak;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.jbosslog.JBossLog;

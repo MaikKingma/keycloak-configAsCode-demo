@@ -1,0 +1,32 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="0003-client-projection" author="Maik Kingma">
+        <createTable tableName="client_projection">
+            <column name="realm_name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="client_id" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addPrimaryKey
+                columnNames="realm_name, client_id"
+                constraintName="pk_client_projection"
+                tableName="client_projection"/>
+
+        <addForeignKeyConstraint
+                baseColumnNames="realm_name"
+                baseTableName="client_projection"
+                constraintName="fk_client_projection_realm_projection"
+                referencedColumnNames="name"
+                referencedTableName="realm_projection"
+                onDelete="CASCADE"
+                onUpdate="CASCADE"/>
+    </changeSet>
+
+</databaseChangeLog>

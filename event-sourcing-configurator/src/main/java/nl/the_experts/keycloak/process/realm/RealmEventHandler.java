@@ -1,6 +1,5 @@
 package nl.the_experts.keycloak.process.realm;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nl.the_experts.keycloak.domain.realm.RealmCreatedEvent;
 import nl.the_experts.keycloak.domain_interaction.realm.RealmUseCase;

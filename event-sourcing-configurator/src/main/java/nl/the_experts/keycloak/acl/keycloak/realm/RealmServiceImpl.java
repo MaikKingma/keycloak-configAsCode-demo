@@ -1,5 +1,6 @@
-package nl.the_experts.keycloak.acl;
+package nl.the_experts.keycloak.acl.keycloak.realm;
 
+import nl.the_experts.keycloak.acl.keycloak.KeycloakClient;
 import nl.the_experts.keycloak.domain_interaction.realm.RealmService;
 import org.keycloak.representations.idm.RealmRepresentation;
 import org.springframework.stereotype.Service;

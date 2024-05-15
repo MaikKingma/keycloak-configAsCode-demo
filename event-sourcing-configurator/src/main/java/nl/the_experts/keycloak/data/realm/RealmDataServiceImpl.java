@@ -6,14 +6,14 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RealmDataServiceImpl implements RealmDataService {
-    private final RealmRepository realmRepository;
+    private final RealmProjectionRepository realmProjectionRepository;
 
-    public RealmDataServiceImpl(RealmRepository realmRepository) {
-        this.realmRepository = realmRepository;
+    public RealmDataServiceImpl(RealmProjectionRepository realmProjectionRepository) {
+        this.realmProjectionRepository = realmProjectionRepository;
     }
 
     @Override
     public void createRealmProjection(String name, String displayName) {
-        realmRepository.save(RealmProjection.builder().name(name).displayName(displayName).build());
+        realmProjectionRepository.save(RealmProjection.builder().name(name).displayName(displayName).build());
     }
 }

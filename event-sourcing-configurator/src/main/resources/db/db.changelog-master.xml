@@ -5,4 +5,5 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
     <include file="changelog/0001-axon-tables.xml" relativeToChangelogFile="true"/>
     <include file="changelog/0002-realm-projection.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/0003-client-projection.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

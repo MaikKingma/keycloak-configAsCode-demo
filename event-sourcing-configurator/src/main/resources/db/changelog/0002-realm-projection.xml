@@ -7,10 +7,10 @@
 
     <changeSet id="0002-realm-projection" author="Maik Kingma">
         <createTable tableName="realm_projection">
-            <column name="name" type="varchar(255)">
+            <column name="name" type="VARCHAR(255)">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="display_name" type="varchar(255)">
+            <column name="display_name" type="VARCHAR(255)">
                 <constraints nullable="true"/>
             </column>
         </createTable>
