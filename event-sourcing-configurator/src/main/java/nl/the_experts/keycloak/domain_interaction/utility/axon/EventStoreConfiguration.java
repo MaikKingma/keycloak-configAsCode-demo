@@ -3,10 +3,8 @@ package nl.the_experts.keycloak.domain_interaction.utility.axon;
 import org.axonframework.common.jdbc.PersistenceExceptionResolver;
 import org.axonframework.common.jpa.EntityManagerProvider;
 import org.axonframework.common.transaction.TransactionManager;
-import org.axonframework.config.EventProcessingConfigurer;
 import org.axonframework.eventhandling.tokenstore.TokenStore;
 import org.axonframework.eventhandling.tokenstore.jpa.JpaTokenStore;
-import org.axonframework.eventhandling.tokenstore.jpa.TokenEntry;
 import org.axonframework.eventsourcing.eventstore.EmbeddedEventStore;
 import org.axonframework.eventsourcing.eventstore.EventStorageEngine;
 import org.axonframework.eventsourcing.eventstore.EventStore;
@@ -14,7 +12,6 @@ import org.axonframework.eventsourcing.eventstore.jpa.JpaEventStorageEngine;
 import org.axonframework.eventsourcing.eventstore.jpa.SQLErrorCodesResolver;
 import org.axonframework.serialization.Serializer;
 import org.axonframework.springboot.util.jpa.ContainerManagedEntityManagerProvider;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
@@ -24,7 +21,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Configuration
-public class EventSourcingConfig {
+public class EventStoreConfiguration {
 
     @Bean
     @ConditionalOnMissingBean
@@ -42,6 +39,8 @@ public class EventSourcingConfig {
                 .serializer(serializer)
                 .build();
     }
+
+    // TODO snapshot store research
 
     @Bean
     @ConditionalOnMissingBean

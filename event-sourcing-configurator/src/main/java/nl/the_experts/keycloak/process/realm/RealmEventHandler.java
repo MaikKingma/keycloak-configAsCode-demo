@@ -3,6 +3,7 @@ package nl.the_experts.keycloak.process.realm;
 import lombok.extern.slf4j.Slf4j;
 import nl.the_experts.keycloak.domain.realm.RealmEvent;
 import nl.the_experts.keycloak.domain_interaction.realm.RealmUseCase;
+import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.eventhandling.ReplayStatus;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Slf4j
 @Service
+@ProcessingGroup("trackingEventProcessor")
 public class RealmEventHandler {
 
     private final RealmUseCase realmUseCase;
