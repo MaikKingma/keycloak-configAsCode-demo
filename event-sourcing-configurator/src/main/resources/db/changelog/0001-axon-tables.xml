@@ -65,7 +65,7 @@
             <column name="time_stamp" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="token" type="BYTEA"/>
+            <column name="token" type="OID"/>
             <column name="token_type" type="VARCHAR(255)"/>
             <column name="type" type="VARCHAR(255)"/>
             <column name="processing_group" type="VARCHAR(255)">
@@ -177,7 +177,7 @@
             <column name="timestamp" type="VARCHAR(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="token" type="BYTEA"/>
+            <column name="token" type="OID"/>
             <column name="token_type" type="VARCHAR(255)"/>
         </createTable>
     </changeSet>

@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
-@EntityScan(basePackages = {"org.axonframework.eventsourcing.eventstore.jpa", "nl.the_experts.keycloak.data"})
+@EntityScan(basePackages = {"org.axonframework.eventsourcing.eventstore.jpa", "org.axonframework.eventhandling.tokenstore.jpa", "nl.the_experts.keycloak.data"})
 public class EventSourcingConfiguratorApplication {
 
 	public static void main(String[] args) {
