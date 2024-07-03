@@ -4,6 +4,7 @@ import nl.the_experts.keycloak.acl.keycloak.KeycloakClient;
 import nl.the_experts.keycloak.domain_interaction.client.ClientService;
 import org.keycloak.admin.client.resource.RealmResource;
 import org.keycloak.representations.idm.ClientRepresentation;
+import org.keycloak.representations.idm.RoleRepresentation;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -45,5 +46,7 @@ public class ClientServiceImpl implements ClientService {
         clientRepresentation.setStandardFlowEnabled(true);
 
         realmResource.clients().create(clientRepresentation);
+
+        realmResource.clients().get(clientId).roles().create(new RoleRepresentation("admin"));
     }
 }

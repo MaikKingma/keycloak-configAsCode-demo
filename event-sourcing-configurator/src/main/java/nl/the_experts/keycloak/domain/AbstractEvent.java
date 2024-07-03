@@ -2,6 +2,7 @@ package nl.the_experts.keycloak.domain;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 @Getter
@@ -11,9 +12,12 @@ public abstract class AbstractEvent<T> {
 
     private final T id;
 
+    @Setter
+    private boolean isManualReplay;
+
     protected AbstractEvent(T id) {
         super();
         this.id = id;
+        isManualReplay = false;
     }
-
 }

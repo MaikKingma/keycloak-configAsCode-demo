@@ -1,7 +1,6 @@
 package nl.the_experts.keycloak.command.replay;
 
 
-import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.common.transaction.TransactionManager;
 import org.axonframework.config.ProcessingGroup;
@@ -13,7 +12,6 @@ import org.axonframework.eventsourcing.eventstore.EmbeddedEventStore;
 import org.axonframework.eventsourcing.eventstore.EventStore;
 import org.axonframework.eventsourcing.eventstore.inmemory.InMemoryEventStorageEngine;
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,6 +54,12 @@ public class EventStoreCommands {
 
         TokenStore inMemoryTokenStore = new InMemoryTokenStore();
         engine.appendEvents(events);
+
+        // ideas
+        // 1. set the header of the GenericDomainEventMessage to isManualReplay = true
+        // 2. add replay metadata to the event
+        // 3. ask mitchell
+        //
 
         String name = "trackingEventProcessor-replay-" + replayDetailsPayload.aggregateId();
         EmbeddedEventStore eventStore = EmbeddedEventStore.builder()
