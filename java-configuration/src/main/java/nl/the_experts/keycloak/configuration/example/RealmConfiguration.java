@@ -38,11 +38,14 @@ public class RealmConfiguration {
     }
 
     private void updateRealm(String realmName) {
+        RealmResource realmResource = realmsResource.realm(realmName);
+
+        String browserFlowAlias = new BrowserFlowConfiguration(realmResource).createBrowserFlow();
+
         RealmRepresentation realmRepresentation = new RealmRepresentation();
         realmRepresentation.setBruteForceProtected(true);
         realmRepresentation.setEnabled(true);
-
-        RealmResource realmResource = realmsResource.realm(realmName);
+        realmRepresentation.setBrowserFlow(browserFlowAlias);
         realmResource.update(realmRepresentation);
     }
 }
