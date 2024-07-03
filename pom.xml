@@ -36,7 +36,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <!-- Keycloak -->
-        <keycloak.version>23.0.7</keycloak.version>
+        <keycloak.version>24.0.5</keycloak.version>
         <quarkus.version>3.2.10.Final</quarkus.version>
         <vertx.version>4.4.6</vertx.version>
         <quarkus.native.builder-image>mutable-jar</quarkus.native.builder-image>

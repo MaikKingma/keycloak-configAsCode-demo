@@ -4,7 +4,7 @@ RUN microdnf update -y && \
     echo "keycloak:x:0:root" >> /etc/group && \
     echo "keycloak:x:1000:0:keycloak user:/opt/keycloak:/sbin/nologin" >> /etc/passwd
 
-COPY --chown=keycloak:keycloak keycloak/target/keycloak-23.0.7  /opt/keycloak
+COPY --chown=keycloak:keycloak keycloak/target/keycloak-24.0.5  /opt/keycloak
 
 USER 1000
 
