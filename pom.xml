@@ -37,12 +37,16 @@
 
         <!-- Keycloak -->
         <keycloak.version>24.0.5</keycloak.version>
+
+        <!-- Fix versions -->
         <quarkus.version>3.8.4</quarkus.version>
         <vertx.version>4.4.9</vertx.version>
         <quarkus.native.builder-image>mutable-jar</quarkus.native.builder-image>
         <jandex.version>3.1.5</jandex.version>
         <asm.version>9.6</asm.version>
         <resteasy.version>6.2.7.Final</resteasy.version>
+        <guava.version>33.2.1-jre</guava.version>
+        <apache-mime4j-dom.version>0.8.11</apache-mime4j-dom.version>
 
         <!-- Plugins -->
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
@@ -142,10 +146,19 @@
                         <groupId>org.jboss.resteasy</groupId>
                         <artifactId>resteasy-core-spi</artifactId>
                     </exclusion>
+                    <exclusion>
+                        <groupId>com.google.guava</groupId>
+                        <artifactId>guava</artifactId>
+                    </exclusion>
                 </exclusions>
             </dependency>
 
         <!--Fix versions-->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
             <!--Resteasy-->
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
@@ -181,7 +194,7 @@
             <dependency>
                 <groupId>org.apache.james</groupId>
                 <artifactId>apache-mime4j-dom</artifactId>
-                <version>0.8.11</version>
+                <version>${apache-mime4j-dom.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
