@@ -37,12 +37,12 @@
 
         <!-- Keycloak -->
         <keycloak.version>24.0.5</keycloak.version>
-        <quarkus.version>3.2.10.Final</quarkus.version>
-        <vertx.version>4.4.6</vertx.version>
+        <quarkus.version>3.8.4</quarkus.version>
+        <vertx.version>4.4.9</vertx.version>
         <quarkus.native.builder-image>mutable-jar</quarkus.native.builder-image>
         <jandex.version>3.1.5</jandex.version>
-        <asm.version>9.5</asm.version>
-        <resteasy.version>6.2.4.Final</resteasy.version>
+        <asm.version>9.6</asm.version>
+        <resteasy.version>6.2.7.Final</resteasy.version>
 
         <!-- Plugins -->
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
@@ -67,16 +67,12 @@
                 <exclusions>
                     <exclusion>
                         <groupId>org.jboss.resteasy</groupId>
-                        <artifactId>resteasy-core</artifactId>
+                        <artifactId>resteasy-core-spi</artifactId>
                     </exclusion>
-                    <exclusion>
-                        <groupId>org.jboss.resteasy</groupId>
-                        <artifactId>resteasy-multipart-provider</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.jboss</groupId>
-                        <artifactId>jandex</artifactId>
-                    </exclusion>
+<!--                    <exclusion>-->
+<!--                        <groupId>org.jboss</groupId>-->
+<!--                        <artifactId>jandex</artifactId>-->
+<!--                    </exclusion>-->
                     <exclusion>
                         <groupId>org.ow2.asm</groupId>
                         <artifactId>asm</artifactId>
@@ -144,7 +140,7 @@
                 <exclusions>
                     <exclusion>
                         <groupId>org.jboss.resteasy</groupId>
-                        <artifactId>resteasy-multipart-provider</artifactId>
+                        <artifactId>resteasy-core-spi</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
@@ -153,14 +149,13 @@
             <!--Resteasy-->
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
+                <artifactId>resteasy-core-spi</artifactId>
+                <version>${resteasy.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.resteasy</groupId>
                 <artifactId>resteasy-core</artifactId>
                 <version>${resteasy.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.jboss</groupId>
-                        <artifactId>jandex</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.jboss.resteasy</groupId>
@@ -214,6 +209,7 @@
                 <artifactId>asm-tree</artifactId>
                 <version>${asm.version}</version>
             </dependency>
+
             <!--vertx-->
             <dependency>
                 <groupId>io.quarkus</groupId>

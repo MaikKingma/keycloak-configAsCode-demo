@@ -58,6 +58,7 @@
             <artifactId>resteasy-jaxb-provider</artifactId>
         </dependency>
 
+
         <!--Tooling-->
         <dependency>
             <groupId>org.projectlombok</groupId>
