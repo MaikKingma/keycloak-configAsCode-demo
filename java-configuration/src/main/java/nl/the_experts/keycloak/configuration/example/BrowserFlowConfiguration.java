@@ -1,6 +1,6 @@
 package nl.the_experts.keycloak.configuration.example;
 
-import lombok.AllArgsConstructor;
+import lombok.Setter;
 import lombok.extern.jbosslog.JBossLog;
 import nl.the_experts.keycloak.configuration.KeycloakConfigurationProperties;
 import org.keycloak.admin.client.resource.RealmResource;
@@ -12,8 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Setter
 @JBossLog
-@AllArgsConstructor
 public class BrowserFlowConfiguration {
 
     private RealmResource realmResource;

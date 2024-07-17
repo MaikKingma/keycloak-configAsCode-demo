@@ -13,6 +13,7 @@ import java.util.List;
 public class RealmConfiguration {
 
     private RealmsResource realmsResource;
+    private BrowserFlowConfiguration browserFlowConfiguration;
 
     /**
      * Configures the realm, first validates if the realm exists and if none exists, creates the realm.
@@ -40,7 +41,8 @@ public class RealmConfiguration {
     private void updateRealm(String realmName) {
         RealmResource realmResource = realmsResource.realm(realmName);
 
-        String browserFlowAlias = new BrowserFlowConfiguration(realmResource).createBrowserFlow();
+        browserFlowConfiguration.setRealmResource(realmResource);
+        String browserFlowAlias = browserFlowConfiguration.createBrowserFlow();
 
         RealmRepresentation realmRepresentation = new RealmRepresentation();
         realmRepresentation.setBruteForceProtected(true);
