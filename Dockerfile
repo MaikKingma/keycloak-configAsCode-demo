@@ -1,3 +1,11 @@
+FROM node:22.2.0 AS keycloakify_jar_builder
+RUN apt-get update && \
+    apt-get install -y maven;
+
+COPY ./theme/ /opt/theme
+WORKDIR /opt/theme
+RUN npm ci && npm run build-keycloak-theme
+
 FROM registry.access.redhat.com/ubi8-minimal:8.10 AS builder
 RUN microdnf update -y && \
     microdnf install -y java-21-openjdk-headless && microdnf clean all && rm -rf /var/cache/yum/* && \
@@ -5,6 +13,7 @@ RUN microdnf update -y && \
     echo "keycloak:x:1000:0:keycloak user:/opt/keycloak:/sbin/nologin" >> /etc/passwd
 
 COPY --chown=keycloak:keycloak keycloak/target/keycloak-25.0.2  /opt/keycloak
+COPY --from=keycloakify_jar_builder /opt/theme/dist_keycloak/config-as-code-theme.jar /opt/keycloak/providers/
 
 USER 1000
 

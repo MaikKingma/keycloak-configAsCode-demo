@@ -41,6 +41,7 @@ public class RealmConfiguration {
         RealmRepresentation realmRepresentation = new RealmRepresentation();
         realmRepresentation.setBruteForceProtected(true);
         realmRepresentation.setEnabled(true);
+        realmRepresentation.setLoginTheme("config-as-code-theme");
 
         RealmResource realmResource = realmsResource.realm(realmName);
         realmResource.update(realmRepresentation);

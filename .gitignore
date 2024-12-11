@@ -3,6 +3,7 @@
 *.iml
 .gradle
 target/
+.DS_Store
 
 # Compiled class file
 *.class
