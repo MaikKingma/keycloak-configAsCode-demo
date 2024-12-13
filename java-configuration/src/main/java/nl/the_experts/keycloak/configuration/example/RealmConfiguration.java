@@ -48,6 +48,8 @@ public class RealmConfiguration {
         realmRepresentation.setBruteForceProtected(true);
         realmRepresentation.setEnabled(true);
         realmRepresentation.setBrowserFlow(browserFlowAlias);
+        realmRepresentation.setLoginTheme("config-as-code-theme");
+
         realmResource.update(realmRepresentation);
     }
 }

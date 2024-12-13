@@ -31,3 +31,18 @@ hs_err_pid*
 # maven
 dependency-reduced-pom.xml
 /.env
+
+
+# Keycloakify
+node_modules
+
+.vscode
+
+.DS_Store
+
+/dist
+
+/dist_keycloak
+/build
+/storybook-static
+
