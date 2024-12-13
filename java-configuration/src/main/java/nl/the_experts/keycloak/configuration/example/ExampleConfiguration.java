@@ -23,7 +23,7 @@ public class ExampleConfiguration {
         log.infof("Starting configuration of realm '%s'.", REALM_NAME);
         log.info("-----------------------------------------------");
 
-        new RealmConfiguration(keycloak.realms()).configure(REALM_NAME, REALM_DISPLAY_NAME);
+        new RealmConfiguration(keycloak.realms(), new BrowserFlowConfiguration()).configure(REALM_NAME, REALM_DISPLAY_NAME);
 
         log.info("-----------------------------------------------");
         log.infof("Finished configuration of realm '%s'.%n", REALM_NAME);

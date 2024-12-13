@@ -48,6 +48,7 @@ services:
       - KEYCLOAK_ADMIN_PASSWORD
       - KEYCLOAK_CONFIG_SERVER_URI
       - KEYCLOAK_CONFIG_REALM
+      - KEYCLOAK_ALLOWED_IP_ADDRESS
     working_dir: /jars
     command: java -Dkeycloak.server=${KEYCLOAK_CONFIG_SERVER_URI} -Dkeycloak.realm=${KEYCLOAK_CONFIG_REALM} -Dkeycloak.user=${KEYCLOAK_ADMIN} -Dkeycloak.password=${KEYCLOAK_ADMIN_PASSWORD} -jar java-configuration.jar
     #    Uncomment if you want to enable debug mode, in IntelliJ Run Configurations add a Remote JVM Debug execution on port 5005
