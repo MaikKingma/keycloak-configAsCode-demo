@@ -16,18 +16,17 @@ import java.util.Map;
 @JBossLog
 public class BrowserFlowConfiguration {
 
-    private RealmResource realmResource;
-
     private static final String ALIAS = "IP address OTP browser flow";
     private static final String USERNAME_PASSWORD_FORM_PROVIDER_ID = "auth-username-password-form";
     private static final String IP_ADDRESS_AUTHENTICATOR_PROVIDER_ID = "ip-address-authenticator";
     private static final String CONDITIONAL_OTP_FORM_PROVIDER_ID = "auth-conditional-otp-form";
-
     private static final List<String> REQUIRED_EXECUTIONS = List.of(
-            USERNAME_PASSWORD_FORM_PROVIDER_ID,
-            IP_ADDRESS_AUTHENTICATOR_PROVIDER_ID,
-            CONDITIONAL_OTP_FORM_PROVIDER_ID
+        USERNAME_PASSWORD_FORM_PROVIDER_ID,
+        IP_ADDRESS_AUTHENTICATOR_PROVIDER_ID,
+        CONDITIONAL_OTP_FORM_PROVIDER_ID
     );
+
+    private RealmResource realmResource;
 
     public String createBrowserFlow() {
         AuthenticationFlowRepresentation authenticationFlow = new AuthenticationFlowRepresentation();
@@ -51,14 +50,16 @@ public class BrowserFlowConfiguration {
         List<AuthenticationExecutionInfoRepresentation> registrationPageFlowExecutions = realmResource.flows().getExecutions(registrationPageFormExecutionFlowAlias);
 
         String ipAddressProviderExecutionId = registrationPageFlowExecutions.stream()
-                .filter(execution -> execution.getProviderId().equals(IP_ADDRESS_AUTHENTICATOR_PROVIDER_ID))
-                .findFirst().orElseThrow().getId();
+            .filter(execution -> execution.getProviderId().equals(IP_ADDRESS_AUTHENTICATOR_PROVIDER_ID))
+            .findFirst().orElseThrow().getId();
 
         addIpAddressAuthenticatorExecutionConfig(ipAddressProviderExecutionId);
 
         String otpFormProviderExecutionId = registrationPageFlowExecutions.stream()
-                .filter(execution -> execution.getProviderId().equals(CONDITIONAL_OTP_FORM_PROVIDER_ID))
-                .findFirst().orElseThrow().getId();
+            .filter(execution -> execution.getProviderId().equals(CONDITIONAL_OTP_FORM_PROVIDER_ID))
+            .findFirst()
+            .orElseThrow()
+            .getId();
 
         addOTPFormExecutionConfig(otpFormProviderExecutionId);
 
@@ -102,11 +103,9 @@ public class BrowserFlowConfiguration {
     }
 
     private void addOTPFormExecutionConfig(String id) {
-        Map<String, String> config = new HashMap<>(2);
-        config.put("otpControlAttribute", "ip_address_otp_conditional");
-        config.put("defaultOtpOutcome", "force");
-
-        updateExecutionConfig(id, "Conditional OTP Form", config);
+        updateExecutionConfig(id, "Conditional OTP Form", Map.of(
+            "otpControlAttribute", "ip_address_otp_conditional",
+            "defaultOtpOutcome", "force"));
     }
 
     private void updateExecutionConfig(String id, String alias, Map<String, String> config) {

@@ -17,8 +17,8 @@ public class IpAddressAuthenticator implements Authenticator {
 
     @Override
     public void authenticate(AuthenticationFlowContext context) {
-        String allowedIPAddress =  context.getAuthenticatorConfig().getConfig()
-                .get(IpAddressAuthenticatorFactory.ALLOWED_IP_ADDRESS_CONFIG_NAME);
+        String allowedIPAddress = context.getAuthenticatorConfig().getConfig()
+            .get(IpAddressAuthenticatorFactory.ALLOWED_IP_ADDRESS_CONFIG_NAME);
 
         String remoteIPAddress = context.getConnection().getRemoteAddr();
 
@@ -36,6 +36,7 @@ public class IpAddressAuthenticator implements Authenticator {
 
     @Override
     public void action(AuthenticationFlowContext context) {
+        // not implemented
     }
 
     @Override
@@ -50,10 +51,11 @@ public class IpAddressAuthenticator implements Authenticator {
 
     @Override
     public void setRequiredActions(KeycloakSession keycloakSession, RealmModel realmModel, UserModel userModel) {
-
+        // not implemented
     }
 
     @Override
     public void close() {
+        // not implemented
     }
 }

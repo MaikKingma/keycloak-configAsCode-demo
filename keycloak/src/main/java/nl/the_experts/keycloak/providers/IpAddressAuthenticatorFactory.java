@@ -13,10 +13,8 @@ import java.util.List;
 
 public class IpAddressAuthenticatorFactory implements AuthenticatorFactory {
     public static final String PROVIDER_ID = "ip-address-authenticator";
-
-    private static final IpAddressAuthenticator SINGLETON = new IpAddressAuthenticator();
-
     static final String ALLOWED_IP_ADDRESS_CONFIG_NAME = "allowed_ip_address";
+    private static final IpAddressAuthenticator SINGLETON = new IpAddressAuthenticator();
 
     @Override
     public String getId() {
@@ -41,7 +39,7 @@ public class IpAddressAuthenticatorFactory implements AuthenticatorFactory {
     @Override
     public AuthenticationExecutionModel.Requirement[] getRequirementChoices() {
         return List.of(AuthenticationExecutionModel.Requirement.REQUIRED)
-                .toArray(new AuthenticationExecutionModel.Requirement[0]);
+            .toArray(new AuthenticationExecutionModel.Requirement[0]);
     }
 
     @Override
@@ -68,17 +66,17 @@ public class IpAddressAuthenticatorFactory implements AuthenticatorFactory {
 
     @Override
     public void init(Config.Scope scope) {
-
+        // 
     }
 
     @Override
     public void postInit(KeycloakSessionFactory keycloakSessionFactory) {
-
+        // not implemented
     }
 
     @Override
     public void close() {
-
+        // not implemented
     }
 
     @Override
