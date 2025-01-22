@@ -27,11 +27,17 @@ class RealmConfigurationTest {
     @Mock
     private RealmsResource realmsResource;
 
+    @Mock
+    private BrowserFlowConfiguration browserFlowConfiguration;
+
     private RealmConfiguration realmConfiguration;
 
     @BeforeEach
     void beforeEach() {
-        realmConfiguration = new RealmConfiguration(realmsResource);
+        realmConfiguration = new RealmConfiguration(realmsResource, browserFlowConfiguration);
+        when(realmsResource.realm(any(String.class))).thenReturn(realmResource);
+        when(browserFlowConfiguration.createBrowserFlow()).thenReturn("IP address OTP browser flow");
+
     }
 
     @Test
@@ -44,7 +50,8 @@ class RealmConfigurationTest {
         //then
         verify(realmsResource).create(assertArg(result -> assertThat(result)
                 .returns(false, RealmRepresentation::isEnabled)
-                .returns("example", RealmRepresentation::getRealm)));
+                .returns("example", RealmRepresentation::getRealm)
+                .returns(null, RealmRepresentation::getBrowserFlow)));
     }
 
     @Test
@@ -57,7 +64,8 @@ class RealmConfigurationTest {
         //then
         verify(realmResource).update(assertArg(result -> assertThat(result)
                 .returns(true, RealmRepresentation::isBruteForceProtected)
-                .returns(true, RealmRepresentation::isEnabled)));
+                .returns(true, RealmRepresentation::isEnabled)
+                .returns("IP address OTP browser flow", RealmRepresentation::getBrowserFlow)));
         verify(realmsResource, times(0)).create(any());
     }
 
