@@ -79,22 +79,16 @@ public class BrowserFlowConfiguration {
 
     private String addExecutionFlow(String executionAlias, String provider) {
         String providerExecutionFlowAlias = provider + " - " + executionAlias;
-
-        Map<String, String> executionData = new HashMap<>(3);
-        executionData.put("provider", provider);
-        executionData.put("alias", providerExecutionFlowAlias);
-        executionData.put("type", "basic-flow");
-
-        realmResource.flows().addExecutionFlow(executionAlias, executionData);
+        realmResource.flows().addExecutionFlow(executionAlias, Map.of(
+            "provider", provider,
+            "alias", providerExecutionFlowAlias,
+            "type", "basic-flow"));
 
         return providerExecutionFlowAlias;
     }
 
     private void addExecution(String executionAlias, String provider) {
-        Map<String, String> executionData = new HashMap<>(1);
-        executionData.put("provider", provider);
-
-        realmResource.flows().addExecution(executionAlias, executionData);
+        realmResource.flows().addExecution(executionAlias, Map.of("provider", provider));
     }
 
     private void addIpAddressAuthenticatorExecutionConfig(String id) {
