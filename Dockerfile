@@ -1,4 +1,3 @@
-FROM registry.access.redhat.com/ubi8-minimal:8.10 AS builder
 FROM node:22.2.0 AS keycloakify_jar_builder
 RUN apt-get update && \
     apt-get install -y maven;
