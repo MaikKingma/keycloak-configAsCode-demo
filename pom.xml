@@ -278,7 +278,8 @@
                         <consoleOutputReporter>
                             <disable>true</disable>
                         </consoleOutputReporter>
-                        <statelessTestsetInfoReporter implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5StatelessTestsetInfoTreeReporter"/>
+                        <statelessTestsetInfoReporter
+                            implementation="org.apache.maven.plugin.surefire.extensions.junit5.JUnit5StatelessTestsetInfoTreeReporter"/>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -313,6 +314,7 @@
                     <configuration>
                         <finalName>keycloak</finalName>
                         <buildDir>${project.build.directory}/keycloak-${keycloak.version}</buildDir>
+                        <builder-image>quay.io/quarkus/ubi-quarkus-graalvmce-builder-image:jdk-21</builder-image>
                     </configuration>
                     <executions>
                         <execution>
