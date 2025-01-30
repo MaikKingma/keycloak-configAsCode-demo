@@ -1,0 +1,39 @@
+### Create a realm
+POST /realms/create HTTP/1.1
+Host: localhost:8081
+Content-Type: application/json
+
+{
+  "name": "doqmind",
+  "displayName": "DOQMIND default realm"
+}
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 201, "Response status is not 201");
+    });
+%}
+
+### Create a client
+POST /realms/doqmind/clients/create HTTP/1.1
+Host: localhost:8081
+Content-Type: application/json
+
+{
+  "clientId": "doqmind"
+}
+
+> {%
+    client.test("Request executed successfully", function () {
+        client.assert(response.status === 201, "Response status is not 201");
+    });
+%}
+
+### Replay events by aggregate Id
+POST /replay HTTP/1.1
+Host: localhost:8081
+Content-Type: application/json
+
+{
+  "aggregateId": "doqmind"
+}
