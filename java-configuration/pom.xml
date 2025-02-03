@@ -31,12 +31,7 @@
             <artifactId>keycloak-services</artifactId>
         </dependency>
 
-        <!--  Keycloak Version fixes-->
-        <dependency>
-            <groupId>org.apache.james</groupId>
-            <artifactId>apache-mime4j-dom</artifactId>
-        </dependency>
-
+    <!--fix versions-->
         <!--Tooling-->
         <dependency>
             <groupId>org.projectlombok</groupId>

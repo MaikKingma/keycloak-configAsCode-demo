@@ -24,8 +24,8 @@
             <artifactId>keycloak-quarkus-server</artifactId>
         </dependency>
 
-    <!--Fix versions-->
-        <!--asm-->
+        <!--Fix versions-->
+        <!-- asm -->
         <dependency>
             <groupId>org.ow2.asm</groupId>
             <artifactId>asm</artifactId>
@@ -42,18 +42,11 @@
             <groupId>org.ow2.asm</groupId>
             <artifactId>asm-tree</artifactId>
         </dependency>
+
         <!--vertx-->
         <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-vertx</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-vertx-http</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.vertx</groupId>
-            <artifactId>vertx-core</artifactId>
+            <groupId>io.smallrye.reactive</groupId>
+            <artifactId>smallrye-mutiny-vertx-core</artifactId>
         </dependency>
         <dependency>
             <groupId>io.vertx</groupId>
@@ -61,7 +54,11 @@
         </dependency>
         <dependency>
             <groupId>io.vertx</groupId>
-            <artifactId>vertx-web</artifactId>
+            <artifactId>vertx-bridge-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
         </dependency>
         <dependency>
             <groupId>io.vertx</groupId>
@@ -69,11 +66,7 @@
         </dependency>
         <dependency>
             <groupId>io.vertx</groupId>
-            <artifactId>vertx-bridge-common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.vertx</groupId>
-            <artifactId>vertx-codegen</artifactId>
+            <artifactId>vertx-web</artifactId>
         </dependency>
     </dependencies>
 

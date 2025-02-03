@@ -12,7 +12,7 @@ RUN microdnf update -y && \
     echo "keycloak:x:0:root" >> /etc/group && \
     echo "keycloak:x:1000:0:keycloak user:/opt/keycloak:/sbin/nologin" >> /etc/passwd
 
-COPY --chown=keycloak:keycloak keycloak/target/keycloak-25.0.2  /opt/keycloak
+COPY --chown=keycloak:keycloak keycloak/target/keycloak-25.0.6  /opt/keycloak
 COPY --from=keycloakify_jar_builder /opt/theme/dist_keycloak/config-as-code-theme.jar /opt/keycloak/providers/
 
 USER 1000
