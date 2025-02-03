@@ -1,6 +1,6 @@
 package nl.the_experts.keycloak.command.realm;
 
-import nl.the_experts.keycloak.domain_interaction.realm.RealmUseCase;
+import nl.the_experts.keycloak.domain_interaction.realm.RealmFlow;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/realms")
 public class RealmCommands {
 
-    private final RealmUseCase realmUseCase;
+    private final RealmFlow realmFlow;
 
-    public RealmCommands(RealmUseCase realmUseCase) {
-        this.realmUseCase = realmUseCase;
+    public RealmCommands(RealmFlow realmFlow) {
+        this.realmFlow = realmFlow;
     }
 
     @PostMapping("/create")
     void createAccount(@RequestBody CreateRealmDto createRealmDto) {
-        realmUseCase.createRealm(createRealmDto.name, createRealmDto.displayName);
+        realmFlow.createRealm(createRealmDto.name, createRealmDto.displayName);
     }
 
     private record CreateRealmDto(String name, String displayName) {

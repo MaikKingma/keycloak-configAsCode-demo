@@ -48,7 +48,7 @@ services:
       start_period: 10s
 
   keycloak-java-configuration:
-    image: openjdk:17
+    image: openjdk:21
     volumes:
       - ./java-configuration/target/java-configuration.jar:/jars/java-configuration.jar
     environment:

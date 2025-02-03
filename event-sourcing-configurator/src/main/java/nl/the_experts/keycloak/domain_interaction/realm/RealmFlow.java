@@ -5,12 +5,12 @@ import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.stereotype.Service;
 
 @Service
-public class RealmUseCase {
+public class RealmFlow {
     private final RealmService realmService;
     private final RealmDataService realmDataService;
     private final CommandGateway commandGateway;
 
-    public RealmUseCase(RealmService realmService, RealmDataService realmDataService, CommandGateway commandGateway) {
+    public RealmFlow(RealmService realmService, RealmDataService realmDataService, CommandGateway commandGateway) {
         this.realmService = realmService;
         this.realmDataService = realmDataService;
         this.commandGateway = commandGateway;

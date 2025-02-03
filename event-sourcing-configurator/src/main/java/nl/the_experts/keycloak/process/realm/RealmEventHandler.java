@@ -2,7 +2,7 @@ package nl.the_experts.keycloak.process.realm;
 
 import lombok.extern.slf4j.Slf4j;
 import nl.the_experts.keycloak.domain.realm.RealmEvent;
-import nl.the_experts.keycloak.domain_interaction.realm.RealmUseCase;
+import nl.the_experts.keycloak.domain_interaction.realm.RealmFlow;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
 import org.axonframework.eventhandling.ReplayStatus;
@@ -14,10 +14,10 @@ import org.springframework.transaction.annotation.Transactional;
 @ProcessingGroup("trackingEventProcessor")
 public class RealmEventHandler {
 
-    private final RealmUseCase realmUseCase;
+    private final RealmFlow realmFlow;
 
-    public RealmEventHandler(RealmUseCase realmUseCase) {
-        this.realmUseCase = realmUseCase;
+    public RealmEventHandler(RealmFlow realmFlow) {
+        this.realmFlow = realmFlow;
     }
 
     @EventHandler
@@ -27,6 +27,6 @@ public class RealmEventHandler {
             log.info("Replaying RealmCreatedEvent: {}", event);
         }
         log.info("Handling RealmCreatedEvent: {}", event);
-        realmUseCase.createRealmProjection(event.getId(), event.getDisplayName());
+        realmFlow.createRealmProjection(event.getId(), event.getDisplayName());
     }
 }
