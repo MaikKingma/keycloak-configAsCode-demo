@@ -21,11 +21,12 @@
         <quarkus.native.builder-image>quay.io/quarkus/ubi-quarkus-graalvmce-builder-image:jdk-21</quarkus.native.builder-image>
 
         <!-- Keycloak -->
-        <keycloak.version>25.0.2</keycloak.version>
+        <keycloak.version>25.0.6</keycloak.version>
 
         <!-- Keycloak versions fixes -->
+        <asm.version>9.6</asm.version>
         <vertx.version>4.5.7</vertx.version>
-        <asm.version>9.7</asm.version>
+        <smallrye-mutiny-vertx-core.version>3.11.0</smallrye-mutiny-vertx-core.version>
         <apache-mime4j-dom.version>0.8.11</apache-mime4j-dom.version>
 
         <!-- Maven -->
@@ -82,12 +83,28 @@
                         <artifactId>asm-util</artifactId>
                     </exclusion>
                     <exclusion>
-                        <groupId>io.quarkus</groupId>
-                        <artifactId>quarkus-vertx</artifactId>
+                        <groupId>io.smallrye.reactive</groupId>
+                        <artifactId>smallrye-mutiny-vertx-core</artifactId>
                     </exclusion>
                     <exclusion>
-                        <groupId>io.quarkus</groupId>
-                        <artifactId>quarkus-vertx-http</artifactId>
+                        <groupId>io.vertx</groupId>
+                        <artifactId>vertx-auth-common</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>io.vertx</groupId>
+                        <artifactId>vertx-bridge-common</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>io.vertx</groupId>
+                        <artifactId>vertx-core</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>io.vertx</groupId>
+                        <artifactId>vertx-web-common</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>io.vertx</groupId>
+                        <artifactId>vertx-web</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
@@ -101,12 +118,6 @@
                 <groupId>org.keycloak</groupId>
                 <artifactId>keycloak-admin-client</artifactId>
                 <version>${keycloak.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.apache.james</groupId>
-                        <artifactId>apache-mime4j-dom</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.keycloak</groupId>
@@ -120,13 +131,6 @@
             </dependency>
 
             <!--Fix versions-->
-            <!-- CVE fixes -->
-            <dependency>
-                <groupId>org.apache.james</groupId>
-                <artifactId>apache-mime4j-dom</artifactId>
-                <version>${apache-mime4j-dom.version}</version>
-            </dependency>
-
             <!--asm-->
             <dependency>
                 <groupId>org.ow2.asm</groupId>
@@ -149,67 +153,15 @@
                 <version>${asm.version}</version>
             </dependency>
 
-            <!--vertx-->
+            <!-- vertx -->
             <dependency>
-                <groupId>io.quarkus</groupId>
-                <artifactId>quarkus-vertx</artifactId>
-                <version>${quarkus.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>io.vertx</groupId>
-                        <artifactId>vertx-core</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>io.vertx</groupId>
-                        <artifactId>vertx-codegen</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>io.quarkus</groupId>
-                <artifactId>quarkus-vertx-http</artifactId>
-                <version>${quarkus.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>io.vertx</groupId>
-                        <artifactId>vertx-core</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>io.vertx</groupId>
-                        <artifactId>vertx-auth-common</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>io.vertx</groupId>
-                        <artifactId>vertx-web</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>io.vertx</groupId>
-                        <artifactId>vertx-web-common</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>io.vertx</groupId>
-                        <artifactId>vertx-bridge-common</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>io.vertx</groupId>
-                <artifactId>vertx-core</artifactId>
-                <version>${vertx.version}</version>
+                <groupId>io.smallrye.reactive</groupId>
+                <artifactId>smallrye-mutiny-vertx-core</artifactId>
+                <version>${smallrye-mutiny-vertx-core.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.vertx</groupId>
                 <artifactId>vertx-auth-common</artifactId>
-                <version>${vertx.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.vertx</groupId>
-                <artifactId>vertx-web</artifactId>
-                <version>${vertx.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>io.vertx</groupId>
-                <artifactId>vertx-web-common</artifactId>
                 <version>${vertx.version}</version>
             </dependency>
             <dependency>
@@ -219,7 +171,17 @@
             </dependency>
             <dependency>
                 <groupId>io.vertx</groupId>
-                <artifactId>vertx-codegen</artifactId>
+                <artifactId>vertx-core</artifactId>
+                <version>${vertx.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.vertx</groupId>
+                <artifactId>vertx-web-common</artifactId>
+                <version>${vertx.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.vertx</groupId>
+                <artifactId>vertx-web</artifactId>
                 <version>${vertx.version}</version>
             </dependency>
 
