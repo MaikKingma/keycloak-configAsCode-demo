@@ -23,8 +23,8 @@ public class ClientServiceImpl implements ClientService {
         RealmResource realmResource = keycloakClient.get().realm(realmName);
         ClientRepresentation clientRepresentation = new ClientRepresentation();
         clientRepresentation.setClientId(clientId);
-        clientRepresentation.setName("");
-        clientRepresentation.setDescription("");
+        clientRepresentation.setName("testName");
+        clientRepresentation.setDescription("test description");
 
         HashMap<String, String> attributes = new HashMap<>();
         attributes.put("auth2.device.authorization.grant.enabled", Boolean.FALSE.toString());
@@ -47,6 +47,6 @@ public class ClientServiceImpl implements ClientService {
 
         realmResource.clients().create(clientRepresentation);
 
-        realmResource.clients().get(clientId).roles().create(new RoleRepresentation("admin"));
+        realmResource.clients().get(clientId).roles().create(new RoleRepresentation("admin", "admin", false));
     }
 }

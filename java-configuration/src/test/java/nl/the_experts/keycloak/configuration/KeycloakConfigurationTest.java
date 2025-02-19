@@ -1,10 +1,10 @@
 package nl.the_experts.keycloak.configuration;
 
+import nl.the_experts.keycloak.configuration.eventsorcerer.EventSorcererConfiguration;
 import nl.the_experts.keycloak.configuration.example.ExampleConfiguration;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.MockedConstruction;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.mockito.Mockito.mockConstruction;
@@ -20,14 +20,17 @@ class KeycloakConfigurationTest {
     @Test
     void configure_shouldCallsConfigureForExampleRealms() {
         // given
-        MockedConstruction<ExampleConfiguration> exampleConfigurationMockedConstruction =
-                mockConstruction(ExampleConfiguration.class);
+        var exampleConfigurationMockedConstruction = mockConstruction(ExampleConfiguration.class);
+        var eventSorcererMock = mockConstruction(EventSorcererConfiguration.class);
         // when
         keycloakConfiguration.configure();
         // then
-        ExampleConfiguration exampleConfiguration = exampleConfigurationMockedConstruction.constructed().get(0);
+        var exampleConfiguration = exampleConfigurationMockedConstruction.constructed().getFirst();
+        var eventSorcererConfiguration = eventSorcererMock.constructed().getFirst();
         verify(exampleConfiguration, times(1)).configure();
+        verify(eventSorcererConfiguration, times(1)).configure();
         // finally
         exampleConfigurationMockedConstruction.close();
+        eventSorcererMock.close();
     }
 }
