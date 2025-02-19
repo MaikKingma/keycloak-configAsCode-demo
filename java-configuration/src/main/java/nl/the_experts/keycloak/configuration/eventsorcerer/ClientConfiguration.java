@@ -9,7 +9,6 @@ import org.keycloak.representations.idm.ClientRepresentation;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 @JBossLog
 @AllArgsConstructor
@@ -57,7 +56,7 @@ public class ClientConfiguration {
 
         clientRepresentation.setBaseUrl("");
         clientRepresentation.setRootUrl("");
-        clientRepresentation.setRedirectUris(List.of(EVENT_SORCERER_DASHBOARD_HOST + "/*"));
+        clientRepresentation.setRedirectUris(List.of(EVENT_SORCERER_DASHBOARD_HOST + "/api/auth/callback/keycloak"));
         clientRepresentation.setProtocol("openid-connect");
 
         clientRepresentation.setAuthorizationServicesEnabled(false);

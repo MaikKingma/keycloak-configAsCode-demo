@@ -1,6 +1,6 @@
 services:
   postgres:
-    image: postgres:15.10
+    image: postgres:15.11
     container_name: postgres
     environment:
       POSTGRES_DB: keycloak
