@@ -16,8 +16,10 @@ services:
       timeout: 5s
       retries: 5
 
-  keycloak:
-    build: .
+  keycloak-server:
+    build:
+      context: ./keycloak-server
+      dockerfile: Dockerfile
     depends_on:
       postgres:
         condition: service_healthy
@@ -48,9 +50,10 @@ services:
       start_period: 10s
 
   keycloak-java-configuration:
-    image: openjdk:21
+    image: openjdk:21-jdk
+    container_name: keycloak-java-configuration
     volumes:
-      - ./java-configuration/target/java-configuration.jar:/jars/java-configuration.jar
+      - ./keycloak-server/java-configuration/target/java-configuration.jar:/jars/java-configuration.jar
     environment:
       - KEYCLOAK_ADMIN
       - KEYCLOAK_ADMIN_PASSWORD
@@ -64,19 +67,21 @@ services:
     ports:
       - "5005:5005"
     depends_on:
-      keycloak:
+      keycloak-server:
         condition: service_healthy
 
   event-sourcing-configurator:
     container_name: event-sourcing-configurator
     build:
       context: ./event-sourcing-configurator
-      dockerfile: ./event-sourcing-configurator/Dockerfile
+      dockerfile: Dockerfile
     depends_on:
       postgres:
+        condition: service_healthy
+      keycloak-server:
         condition: service_healthy
     ports:
       - "8081:8081"
     environment:
-      - SPRING_PROFILES_ACTIVE=local
+      - SPRING_PROFILES_ACTIVE=docker
 

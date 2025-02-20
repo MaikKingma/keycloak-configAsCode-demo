@@ -29,6 +29,8 @@
         <smallrye-mutiny-vertx-core.version>3.11.0</smallrye-mutiny-vertx-core.version>
         <apache-mime4j-dom.version>0.8.11</apache-mime4j-dom.version>
 
+        <spring-boot-dependencies.version>3.4.3</spring-boot-dependencies.version>
+
         <!-- Axon Framework -->
         <axon.version>4.9.1</axon.version>
 
