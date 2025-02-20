@@ -1,11 +1,11 @@
 ### Create a realm
 POST /realms/create HTTP/1.1
-Host: localhost:8081
+Host: {{event-sourcing-configurator.host}}
 Content-Type: application/json
 
 {
-  "name": "doqmind",
-  "displayName": "DOQMIND default realm"
+  "name": "demogods",
+  "displayName": "Realm of the Demo Gods"
 }
 
 > {%
@@ -15,12 +15,12 @@ Content-Type: application/json
 %}
 
 ### Create a client
-POST /realms/doqmind/clients/create HTTP/1.1
-Host: localhost:8081
+POST /realms/demogods/clients/create HTTP/1.1
+Host: {{event-sourcing-configurator.host}}
 Content-Type: application/json
 
 {
-  "clientId": "doqmind"
+  "clientId": "godmode"
 }
 
 > {%
@@ -31,9 +31,9 @@ Content-Type: application/json
 
 ### Replay events by aggregate Id
 POST /replay HTTP/1.1
-Host: localhost:8081
+Host: {{event-sourcing-configurator.host}}
 Content-Type: application/json
 
 {
-  "aggregateId": "doqmind"
+  "aggregateId": "demogods"
 }

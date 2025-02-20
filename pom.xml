@@ -4,14 +4,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>nl.the_experts.keycloak</groupId>
+    <groupId>dev.kingma.keycloak</groupId>
     <artifactId>keycloak-configascode-demo</artifactId>
     <version>0.0.1-local</version>
     <packaging>pom</packaging>
 
     <modules>
-        <module>keycloak</module>
-        <module>java-configuration</module>
+        <module>keycloak-server</module>
+        <module>event-sourcing-configurator</module>
     </modules>
 
     <properties>
@@ -28,6 +28,9 @@
         <vertx.version>4.5.7</vertx.version>
         <smallrye-mutiny-vertx-core.version>3.11.0</smallrye-mutiny-vertx-core.version>
         <apache-mime4j-dom.version>0.8.11</apache-mime4j-dom.version>
+
+        <!-- Axon Framework -->
+        <axon.version>4.9.1</axon.version>
 
         <!-- Maven -->
         <maven-surefire-plugin.version>3.3.1</maven-surefire-plugin.version>
@@ -50,6 +53,7 @@
 
         <!-- Tooling -->
         <lombok.version>1.18.34</lombok.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
 
         <!-- Testing -->
         <junit.jupiter.version>5.10.3</junit.jupiter.version>
@@ -191,6 +195,20 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct</artifactId>
+                <version>${mapstruct.version}</version>
+            </dependency>
+
+            <!--Axon Framework-->
+            <dependency>
+                <groupId>org.axonframework</groupId>
+                <artifactId>axon-bom</artifactId>
+                <version>${axon.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
             <!--Test-->
             <dependency>
@@ -314,7 +332,7 @@
                     <configuration>
                         <finalName>keycloak</finalName>
                         <buildDir>${project.build.directory}/keycloak-${keycloak.version}</buildDir>
-                        <builder-image>quay.io/quarkus/ubi-quarkus-graalvmce-builder-image:jdk-21</builder-image>
+<!--                        <builder-image>quay.io/quarkus/ubi-quarkus-graalvmce-builder-image:jdk-21</builder-image>-->
                     </configuration>
                     <executions>
                         <execution>

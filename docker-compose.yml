@@ -66,3 +66,17 @@ services:
     depends_on:
       keycloak:
         condition: service_healthy
+
+  event-sourcing-configurator:
+    container_name: event-sourcing-configurator
+    build:
+      context: ./event-sourcing-configurator
+      dockerfile: ./event-sourcing-configurator/Dockerfile
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_PROFILES_ACTIVE=local
+

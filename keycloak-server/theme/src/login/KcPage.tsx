@@ -1,11 +1,11 @@
 import { Suspense, lazy } from "react";
 import type { ClassKey } from "keycloakify/login";
-import type { KcContext } from "./KcContext";
-import { useI18n } from "./i18n";
+import type { KcContext } from "./KcContext.ts";
+import { useI18n } from "./i18n.ts";
 import DefaultPage from "keycloakify/login/DefaultPage";
 import Template from "keycloakify/login/Template";
 
-const Login = lazy(() => import("./pages/Login"));
+const Login = lazy(() => import("./pages/Login.tsx"));
 const UserProfileFormFields = lazy(
     () => import("keycloakify/login/UserProfileFormFields")
 );

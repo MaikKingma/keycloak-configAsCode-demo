@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>nl.the_experts.keycloak</groupId>
-        <artifactId>keycloak-configascode-demo</artifactId>
+        <groupId>dev.kingma.keycloak</groupId>
+        <artifactId>keycloak-server</artifactId>
         <version>0.0.1-local</version>
     </parent>
 
@@ -84,7 +84,7 @@
                         <configuration>
                             <transformers>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>nl.the_experts.keycloak.configuration.KeycloakConfigurationApplication</mainClass>
+                                    <mainClass>configuration.dev.kingma.keycloak.KeycloakConfigurationApplication</mainClass>
                                 </transformer>
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
                                     <resource>META-INF/services/jakarta.ws.rs.ext.Providers</resource>
@@ -100,7 +100,7 @@
                                     </excludes>
                                 </filter>
                             </filters>
-                            <outputFile>${project.build.directory}/${project.artifactId}.jar</outputFile>
+                            <outputFile>target/java-configuration.jar</outputFile>
                         </configuration>
                     </execution>
                 </executions>

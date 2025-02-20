@@ -2,56 +2,27 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.5</version>
-		<relativePath/>
+		<groupId>dev.kingma.keycloak</groupId>
+		<artifactId>keycloak-configascode-demo</artifactId>
+		<version>0.0.1-local</version>
 	</parent>
 
-	<groupId>nl.the_experts.keycloak</groupId>
 	<artifactId>event-sourcing-configurator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>event-sourcing-configurator</name>
 	<description>Configuration API for Keycloak based on Event sourcing with Axon Framework</description>
 
-	<properties>
-		<keycloak.version>23.0.6</keycloak.version>
-		<java.version>21</java.version>
-		<axon.version>4.9.1</axon.version>
-		<mapstruct.version>1.5.5.Final</mapstruct.version>
-	</properties>
-
 	<dependencyManagement>
 		<dependencies>
-			<!--keycloak-->
+			<!-- Spring Boot BOM -->
 			<dependency>
-				<groupId>org.keycloak</groupId>
-				<artifactId>keycloak-admin-client</artifactId>
-				<version>${keycloak.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.keycloak</groupId>
-				<artifactId>keycloak-core</artifactId>
-				<version>${keycloak.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>org.keycloak</groupId>
-				<artifactId>keycloak-services</artifactId>
-				<version>${keycloak.version}</version>
-			</dependency>
- 			<!--Axon Framework-->
-			<dependency>
-				<groupId>org.axonframework</groupId>
-				<artifactId>axon-bom</artifactId>
-				<version>${axon.version}</version>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>3.2.5</version>
 				<type>pom</type>
 				<scope>import</scope>
-			</dependency>
-			<dependency>
-				<groupId>org.mapstruct</groupId>
-				<artifactId>mapstruct</artifactId>
-				<version>${mapstruct.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

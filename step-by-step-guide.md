@@ -42,8 +42,8 @@ mkdir keycloak-configAsCode-demo && cd keycloak-configAsCode-demo
 ```
 We now create two maven artifacts called keycloak and java-configuration by running the following two commands in our terminal window
 ```shell
-mvn archetype:generate -DgroupId=nl.the_experts.keycloak -DartifactId=keycloak -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
-mvn archetype:generate -DgroupId=nl.the_experts.keycloak -DartifactId=java-configuration -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+mvn archetype:generate -DgroupId=dev.kingma.keycloak -DartifactId=keycloak -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+mvn archetype:generate -DgroupId=dev.kingma.keycloak -DartifactId=java-configuration -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
 ```
 ### Cleanup of generated files
 Remove the generated files ``java-configuration/src/main/java/nl/theexperts/keycloak/App.java`` and ``keycloak/src/main/java/nl/theexperts/keycloak/App.java`` and the corresponding test files.
@@ -58,7 +58,7 @@ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 <modelVersion>4.0.0</modelVersion>
 
-    <groupId>nl.the_experts.keycloak</groupId>
+    <groupId>dev.kingma.keycloak</groupId>
     <artifactId>keycloak-configascode-demo</artifactId>
     <version>0.0.1-local</version>
     <packaging>pom</packaging>
@@ -225,7 +225,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>nl.the_experts.keycloak</groupId>
+    <groupId>dev.kingma.keycloak</groupId>
     <artifactId>keycloak-configascode-demo</artifactId>
     <version>0.0.1-local</version>
   </parent>
@@ -242,7 +242,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>nl.the_experts.keycloak</groupId>
+    <groupId>dev.kingma.keycloak</groupId>
     <artifactId>keycloak-configascode-demo</artifactId>
     <version>0.0.1-local</version>
   </parent>
@@ -280,7 +280,7 @@ We start by updating the file `keycloak/pom.xml` with the following content:
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>nl.the_experts.keycloak</groupId>
+        <groupId>dev.kingma.keycloak</groupId>
         <artifactId>keycloak-configascode-demo</artifactId>
         <version>0.0.1-local</version>
     </parent>
